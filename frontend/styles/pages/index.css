@@ -71,11 +71,14 @@ body {
     display: flex;
     justify-content: center;
     gap: 0rem;
+    margin: 0rem 8rem;
 }
 
 .cover__image {
-    height: 646px;
+    /* height: 646px; */
     width: auto;
+    height: 40.38rem;
+    /* width: calc(25vw - 4rem);  */
     object-fit: cover;
     /* border-radius: 5px; */
 }
