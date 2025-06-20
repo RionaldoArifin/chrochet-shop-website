@@ -18,6 +18,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 2rem 9.2rem;
+    /* background-color: rgb(247, 247, 227); */
     /* border: 1px solid #d5d5d5; */
     /* margin: 0rem 6.7rem; */
 }
@@ -64,8 +65,8 @@ body {
 }
 
 .home__link {
-    padding: 2rem 10rem;
-    font-size: 0.9rem;
+    padding: 0rem 10rem;
+    font-size: 1.1rem;
     font-weight: 300;
 }
 
@@ -75,12 +76,16 @@ body {
     padding-right: 11px;
 }
 
+.home__link a:hover {
+    text-decoration: underline;
+}
+
 .about__page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    padding: 1rem 35rem 5rem 35rem;
+    padding: 4rem 35rem 5rem 35rem;
 }
 
 .about-page__description {
@@ -111,6 +116,7 @@ body {
 }
 
 .footer {
+    /* background-color: #fbfbfb; */
     background-color: rgb(246, 246, 234);
     padding: 3rem 8rem;
 }
