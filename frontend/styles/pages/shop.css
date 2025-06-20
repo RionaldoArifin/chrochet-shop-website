@@ -80,41 +80,6 @@ body {
     text-decoration: underline;
 }
 
-.about__page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    padding: 4rem 35rem 5rem 35rem;
-}
-
-.about-page__description {
-    justify-content: left;
-}
-
-.about-page__description h1 {
-    margin-bottom: 1rem;
-}
-
-.about-page__description p {
-    font-size: 1.1rem;
-    color:#575757
-}
-
-.about-page__images {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.about-page__images img {
-    max-width: 300px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
 .footer {
     /* background-color: #fbfbfb; */
     background-color: rgb(246, 246, 234);
@@ -206,7 +171,7 @@ body {
 .preview__title {
     display: flex;
     justify-content: space-between;
-    margin: 5rem 8rem 0rem 8rem;
+    /* margin: 5rem 8rem 0rem 8rem; */
 }
 
 .new-items__title{
@@ -220,7 +185,7 @@ body {
     /* font-family: Helvetica, sans-serif; */
 }
 
-.new-items__button {
+.new-items__button__section {
     background-color: #fff;
     border-radius: 20px;
     border: 1px solid #dadada;
@@ -233,6 +198,16 @@ body {
     margin: 0.5rem 0rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+.new-items__button__section button {
+    border: none;
+    background-color: transparent;
+}
+
+.sort-item-selection {
+    border: none;
+    padding: 0px;
 }
 
 .new-items__image__cover {
@@ -258,17 +233,15 @@ body {
 
 
 .collection__preview {
-    background-color: rgba(247,247,227);
+    /* background-color: rgba(247,247,227); */
+    padding: 5rem 10rem 2rem 10rem;
 }
 
 .preview__gallery {
-    display: flex;
-    gap: 1.5rem;
-    margin: 0.6rem 8rem;
-    margin-bottom: 6rem;
-    justify-content: center;
-    /* font-family:Helvetica, sans-serif; */
-    flex-wrap: wrap; /* Add this to allow items to wrap */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 0.6rem 0rem;
 }
 
 .new-items__collection {
@@ -276,9 +249,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     border: 1px solid #eaeaea;
-    width: calc(25% - 1.5rem); /* Make width responsive */
-    min-width: 250px; /* Set a minimum width */
-    max-width: 400px; /* Set a maximum width */
 }
 
 .new-items__collection:hover {
@@ -324,6 +294,24 @@ body {
     font-weight: 600;
     /* text-transform: uppercase; */
     letter-spacing: 0.07em;
+}
+
+.move-pages__link {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem 0rem;
+}
+
+.move-pages__link a{
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5rem;
+}
+
+.move-pages__link a:hover {
+    text-decoration: underline;
+    color:rgb(95, 95, 95);
 }
 
 
