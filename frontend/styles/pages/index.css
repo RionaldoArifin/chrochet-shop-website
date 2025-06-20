@@ -18,6 +18,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 2rem 9.2rem;
+    border: 1px solid #d5d5d5;
     /* margin: 0rem 6.7rem; */
 }
 
@@ -71,7 +72,9 @@ body {
     display: flex;
     justify-content: center;
     gap: 0rem;
-    margin: 0rem 8rem;
+    padding: 0rem 8rem;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    border: 2px solid #000000;
 }
 
 .cover__image {
@@ -86,6 +89,8 @@ body {
 .cover__description {
     display: flex;
     flex-direction: column;
+    /* border: 1px solid #000000; */
+    padding-bottom: 5rem;
 }
 
 .cover__description h4 {
@@ -154,7 +159,6 @@ body {
 
 
 .collection__preview {
-    margin-top: 7rem;
     background-color: rgba(247,247,227);
 }
 
@@ -506,13 +510,14 @@ body {
 .footer__logo h3 {
     margin-top: 3rem;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.07em;
 }
 
 .footer__logo a {
     margin-top: 0.5rem;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: rgb(76, 76, 76);
 }
 
