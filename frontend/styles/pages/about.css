@@ -1,0 +1,201 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fffff4;
+    color: #000000;
+    font-family: "Radley", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9.2rem;
+    /* border: 1px solid #d5d5d5; */
+    /* margin: 0rem 6.7rem; */
+}
+
+.nav__links__left a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 1rem;
+    margin-right: 3rem;
+}
+
+.nav__links__left a:hover,
+.nav__links__right a:hover {
+    text-decoration: underline;
+}
+
+
+.nav__links__right a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 1rem;
+    margin-left: 3rem;
+}
+
+.nav__logo {
+    position: center;
+    text-decoration: none;
+    color: #000;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1rem;
+    margin-right: 2rem;
+}
+
+.nav__logo:hover {
+    cursor: pointer;
+    color: #4a4a4a;
+}
+
+.home__link {
+    padding: 2rem 10rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.home__link a {
+    text-decoration: none;
+    color:#4a4a4a;
+    padding-right: 11px;
+}
+
+.about__page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 35rem 5rem 35rem;
+}
+
+.about-page__description {
+    justify-content: left;
+}
+
+.about-page__description h1 {
+    margin-bottom: 1rem;
+}
+
+.about-page__description p {
+    font-size: 1.1rem;
+    color:#575757
+}
+
+.about-page__images {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.about-page__images img {
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.footer {
+    background-color: rgb(246, 246, 234);
+    padding: 3rem 8rem;
+}
+
+.footer__content {
+    display: flex;
+}
+
+.footer__logo {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    margin-right: 10rem;
+}
+
+.logo__name {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.footer__logo p {
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+    font-size: 1.1rem;
+}
+
+.footer__logo h3 {
+    margin-top: 3rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.07em;
+}
+
+.footer__logo a {
+    margin-top: 0.5rem;
+    text-decoration: none;
+    font-size: 20px;
+    color: rgb(76, 76, 76);
+}
+
+.footer__logo a:hover {
+    cursor: pointer;
+    color: rgb(115, 115, 115);
+}
+
+.footer__column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__column h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    /* margin-top: 1rem; */
+    margin-bottom: 1.5rem;
+    text-decoration: underline;
+}
+
+.footer__column a,
+.footer__bottom a {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgb(76, 76, 76);
+    text-decoration: none;
+    margin-bottom: 0.9rem;
+}
+
+.footer__column a:hover,
+.footer__bottom a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #000;
+}
+
+.footer__bottom {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.footer__bottom p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+
+
