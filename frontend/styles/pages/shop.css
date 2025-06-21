@@ -224,7 +224,7 @@ body::before {
 
 /* Add a quick-view button on hover */
 .new-items__collection::after {
-    content: "Quick View";
+    content: "View Product";
     position: absolute;
     bottom: -42px;
     left: 0;
