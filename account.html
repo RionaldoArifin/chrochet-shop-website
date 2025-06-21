@@ -6,7 +6,7 @@
         
         <link rel="shortcut icon" type="fronend/image/x-icon" href="frontend/images/yarn-logo-no-background-big.png" />
         <title>KNIT</title>
-        <link rel="stylesheet" href="frontend/styles/pages/about.css" />
+        <link rel="stylesheet" href="frontend/styles/pages/account.css" />
 
 
         <!-- Inter font -->
@@ -31,30 +31,92 @@
 
                 <div class="nav__links__right">
                     <a class=nav__link href="collection.html">Search</a>
-                    <a class=nav__link href="account.html">Account</a>
+                    <a class=nav__link href="collection.html">Account</a>
                     <a class=nav__link href="collection.html">Cart</a>
                 </div>
             </nav>
 
             <div class="home__link">
-                <p><a class="home-link" href="index.html">HOME</a> / ABOUT</p>
+                <p><a class="home-link" href="index.html">HOME</a> / ACCOUNT</p>
             </div>
 
-            <div class="about__page">
-                <div class="about-page__description">
-                    <h1>ABOUT</h1>
-                    <p>Knit is a locally-based, handmade knitting and crochet company situated in Lampung, Indonesia. It specializes in crafting high-quality, modest apparel, unique accessories, and providing creative courses tailored to all skill levels, from beginners to advanced enthusiasts.</p>
+            <div class="account-section">
+                <h2>Account Access</h2>
+                <div class="account-options">
+                    <div class="account-login">
+                        <h3>Already have an account?</h3>
+                        <button class="btn-login">Log In</button>
+                    </div>
+                    <div class="account-divider">
+                        <span>or</span>
+                    </div>
+                    <div class="account-register">
+                        <h3>New to KNIT?</h3>
+                        <button class="btn-register">Create Account</button>
+                        <button class="btn-google">
+                            <i class="fa fa-google"></i>
+                            <span>Continue with Google</span>
+                        </button>
+                    </div>
                 </div>
-
-                <div class="about-page__images">
-                    <!-- <img class="about__image" alt="checkered sweater girl" src="frontend/images/knitting-course-image5.jpg"> -->
-                    <!-- <img class="about__image" alt="sleeveless sweater country girl" src="frontend/images/knitting-course-image6.jpg"> -->
-                     <img class="about__image" alt="checkered sweater girl" src="frontend/images/knitting-course-image2.jpg">
-                     <img class="about__image" alt="checkered sweater girl" src="frontend/images/ab69d7233e1824171c7b5cb471130643.jpg">
-                     <img class="about__image" alt="checkered sweater girl" src="frontend/images/ea11f1b19dd8186fe44600997d5d1c47.jpg">
-                </div>
-                
             </div>
+
+            <!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Log In</h3>
+    <form class="auth-form">
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required>
+      </div>
+      <div class="form-options">
+        <label class="remember-me">
+          <input type="checkbox"> Remember me
+        </label>
+        <a href="#" class="forgot-password">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn-submit">Log In</button>
+    </form>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Create Account</h3>
+    <form class="auth-form">
+      <div class="form-group">
+        <label for="register-name">Full Name</label>
+        <input type="text" id="register-name" required>
+      </div>
+      <div class="form-group">
+        <label for="register-email">Email</label>
+        <input type="email" id="register-email" required>
+      </div>
+      <div class="form-group">
+        <label for="register-password">Password</label>
+        <input type="password" id="register-password" required>
+      </div>
+      <div class="form-group">
+        <label for="register-password-confirm">Confirm Password</label>
+        <input type="password" id="register-password-confirm" required>
+      </div>
+      <div class="form-terms">
+        <label class="terms-checkbox">
+          <input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+      <button type="submit" class="btn-submit">Create Account</button>
+    </form>
+  </div>
+</div>
 
             <footer class="footer">
                 <div class="footer__content">
@@ -154,6 +216,78 @@
               lastScrollTop = scrollTop;
             });
           });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Button elements
+    const loginBtn = document.querySelector('.btn-login');
+    const registerBtn = document.querySelector('.btn-register');
+    const googleBtn = document.querySelector('.btn-google');
+    
+    // Modal elements
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const closeButtons = document.querySelectorAll('.close-modal');
+    
+    // Open login modal
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    }
+    
+    // Open register modal
+    if (registerBtn) {
+        registerBtn.addEventListener('click', function() {
+            registerModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    }
+    
+    // Google sign-in
+    if (googleBtn) {
+        googleBtn.addEventListener('click', function() {
+            // This would be replaced with actual Google OAuth implementation
+            alert('Google authentication would be initiated here.');
+        });
+    }
+    
+    // Close modals when clicking the X
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    });
+    
+    // Close modals when clicking outside the content
+    window.addEventListener('click', function(event) {
+        if (event.target === loginModal) {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        if (event.target === registerModal) {
+            registerModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Handle form submissions
+    const authForms = document.querySelectorAll('.auth-form');
+    authForms.forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Here you would handle the form submission, e.g., send to server
+            alert('Form submitted! In a real implementation, this would be sent to your authentication server.');
+            
+            // Close the modal after submission
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+    });
+});
         </script>
     </head>
 </html>
