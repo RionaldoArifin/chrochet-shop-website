@@ -4,13 +4,42 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-bg: #fffff4;
+    --secondary-bg: rgb(246, 246, 234);
+    --accent-color: #656565;
+    --sale-color: #ff3a2e;
+    --text-dark: #000000;
+    --text-medium: #4a4a4a;
+    --text-light: #6d6d6d;
+    --border-light: #eaeaea;
+    --spacing-unit: 1rem;
+}
+
 body {
-    background-color: #fffff4;
-    color: #000000;
+    background-color: var(--primary-bg);
     font-family: "Radley", serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+    line-height: 1.5;
+    position: relative;
+}
+
+/* Add subtle grid lines to background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px);
+    background-size: 80px 80px;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .nav {
@@ -18,66 +47,97 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 2rem 9.2rem;
-    /* background-color: rgb(247, 247, 227); */
-    /* border: 1px solid #d5d5d5; */
-    /* margin: 0rem 6.7rem; */
+    border-bottom: 1px solid var(--border-light);
 }
 
-.nav__links__left a {
+.nav__links__left a, 
+.nav__links__right a {
     text-decoration: none;
     cursor: pointer;
-    color: #000;
+    color: var(--text-dark);
     font-size: 1rem;
     font-weight: 300;
     padding: 1rem;
+    position: relative;
+}
+
+.nav__links__left a {
     margin-right: 3rem;
+}
+
+.nav__links__right a {
+    margin-left: 3rem;
 }
 
 .nav__links__left a:hover,
 .nav__links__right a:hover {
-    text-decoration: underline;
+    color: var(--accent-color);
 }
 
+/* Underline animation */
+.nav__links__left a::after, 
+.nav__links__right a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0.7rem;
+    left: 1rem;
+    background-color: var(--text-dark);
+    transition: width 0.2s ease-out;
+}
 
-.nav__links__right a {
-    text-decoration: none;
-    cursor: pointer;
-    color: #000;
-    font-size: 1rem;
-    font-weight: 300;
-    padding: 1rem;
-    margin-left: 3rem;
+.nav__links__left a:hover::after,
+.nav__links__right a:hover::after {
+    width: calc(100% - 2rem);
 }
 
 .nav__logo {
     position: center;
     text-decoration: none;
-    color: #000;
-    font-size: 2rem;
+    color: var(--text-dark);
+    font-size: 2.5rem;
     font-weight: 600;
     padding: 1rem;
-    margin-right: 2rem;
+    letter-spacing: 0.15em;
 }
 
 .nav__logo:hover {
     cursor: pointer;
-    color: #4a4a4a;
+    color: var(--text-medium);
+    transition: color 0.3s ease;
 }
 
 .home__link {
-    padding: 0rem 10rem;
-    font-size: 1.1rem;
+    padding: 1.5rem 10rem;
+    font-size: 0.9rem;
     font-weight: 300;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .home__link a {
     text-decoration: none;
-    color:#4a4a4a;
+    color: var(--text-medium);
     padding-right: 11px;
+    cursor: pointer;
+    position: relative;
 }
 
-.home__link a:hover {
-    text-decoration: underline;
+/* Underline animation */
+.home__link a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -0.2rem;
+    left: 0rem;
+    background-color: var(--text-dark);
+    transition: width 0.2s ease-out;
+}
+
+.home__link a:hover::after {
+    width: calc(100% - 0.7rem);
 }
 
 .about__page {
@@ -85,7 +145,9 @@ body {
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    padding: 4rem 35rem 5rem 35rem;
+    padding: 2rem 35rem 5rem 35rem;
+    position: relative;
+    z-index: 1;
 }
 
 .about-page__description {
@@ -93,36 +155,70 @@ body {
 }
 
 .about-page__description h1 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: var(--text-dark);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
 }
 
 .about-page__description p {
     font-size: 1.1rem;
-    color:#575757
+    color: var(--text-medium);
+    line-height: 1.7;
+    margin-bottom: 1rem;
 }
 
 .about-page__images {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: 0rem;
 }
 
 .about-page__images img {
-    max-width: 300px;
-    height: auto;
-    object-fit: cover;
+    width: 100%;  /* Fill the available width */
+    aspect-ratio: 1 / 2;  /* Maintain a square aspect ratio */
+    object-fit: cover;  /* Maintain aspect ratio while filling the container */
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Individual image hover effect */
+.about-page__images img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Add a container for each image to maintain equal width */
+.about-page__image-container {
+    flex: 1;
+    max-width: calc(33.333% - 1rem);  /* Equal width for each container, accounting for gaps */
 }
 
 .footer {
-    /* background-color: #fbfbfb; */
-    background-color: rgb(246, 246, 234);
-    padding: 3rem 8rem;
+    background-color: var(--secondary-bg);
+    padding: 4rem 8rem;
+    position: relative;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-color), transparent);
 }
 
 .footer__content {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .footer__logo {
@@ -133,14 +229,16 @@ body {
 }
 
 .logo__name {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
+    letter-spacing: 0.15em;
 }
 
 .footer__logo p {
-    margin-top: 0.5rem;
-    letter-spacing: 0.1em;
-    font-size: 1.1rem;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .footer__logo h3 {
@@ -148,18 +246,21 @@ body {
     font-weight: 600;
     font-size: 1.2rem;
     letter-spacing: 0.07em;
+    position: relative;
+    display: inline-block;
 }
 
 .footer__logo a {
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
     text-decoration: none;
-    font-size: 20px;
-    color: rgb(76, 76, 76);
+    font-size: 1.1rem;
+    color: #333333;
+    transition: color 0.3s ease;
 }
 
 .footer__logo a:hover {
     cursor: pointer;
-    color: rgb(115, 115, 115);
+    color: #676767;
 }
 
 .footer__column {
@@ -170,25 +271,41 @@ body {
 .footer__column h4 {
     font-size: 1.3rem;
     font-weight: 600;
-    /* margin-top: 1rem; */
     margin-bottom: 1.5rem;
-    text-decoration: underline;
+    position: relative;
+    display: inline-block;
 }
 
 .footer__column a,
 .footer__bottom a {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 500;
-    color: rgb(76, 76, 76);
+    color: var(--text-medium);
     text-decoration: none;
     margin-bottom: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.footer__column a::before,
+.footer__bottom a::before {
+    content: "→";
+    position: absolute;
+    left: -21px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.footer__column a:hover::before,
+.footer__bottom a:hover::before {
+    opacity: 1;
 }
 
 .footer__column a:hover,
 .footer__bottom a:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    color: #000;
+    transform: translateX(21px);
+    color: var(--accent-color);
 }
 
 .footer__bottom {
@@ -198,10 +315,68 @@ body {
 }
 
 .footer__bottom p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
+    color: var(--text-medium);
 }
 
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .about__page {
+        padding: 4rem 20rem 5rem 20rem;
+    }
+}
 
+@media (max-width: 1200px) {
+    .about__page {
+        padding: 4rem 15rem 5rem 15rem;
+    }
+    
+    .nav {
+        padding: 2rem 5rem;
+    }
+    
+    .home__link {
+        padding: 1.5rem 5rem;
+    }
+    
+    .footer {
+        padding: 4rem 5rem;
+    }
+}
 
+@media (max-width: 768px) {
+    .about__page {
+        padding: 4rem 2rem 5rem 2rem;
+    }
+    
+    .about-page__images {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-page__images img {
+        max-width: 100%;
+    }
+    
+    .nav {
+        padding: 2rem 2rem;
+    }
+    
+    .home__link {
+        padding: 1.5rem 2rem;
+    }
+    
+    .footer {
+        padding: 4rem 2rem;
+    }
+    
+    .nav__links__left a {
+        margin-right: 1rem;
+    }
+    
+    .nav__links__right a {
+        margin-left: 1rem;
+    }
+}
