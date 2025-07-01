@@ -36,12 +36,12 @@
                 </div>
             </nav>
 
-<div class="search-container" id="searchContainer">
-  <form class="search-form">
-    <input type="text" class="search-input" placeholder="Search for products...">
-    <button type="button" class="search-close" id="searchClose">✕</button>
-  </form>
-</div>
+            <div class="search-container" id="searchContainer">
+              <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button type="button" class="search-close" id="searchClose">✕</button>
+              </form>
+            </div>
 
             <div class="home__link">
                 <p><a class="home-link" href="index.html">HOME</a> / ABOUT</p>
@@ -163,99 +163,100 @@
 
 
           document.addEventListener("DOMContentLoaded", function() {
-  // Get the original script functionality
-  const nav = document.querySelector('.nav');
-  const navHeight = nav.offsetHeight;
-  const navOriginalPosition = nav.offsetTop;
-  let lastScrollTop = 0;
-  let isFixed = false;
-  
-  // Set initial nav properties
-  nav.style.width = '100%';
-  nav.style.transition = 'transform 0.2s ease-in-out';
-  nav.style.zIndex = '1000';
-  
-  // Create a placeholder to prevent layout shifts
-  const placeholder = document.createElement('div');
-  placeholder.style.height = navHeight + 'px';
-  placeholder.style.display = 'none';
-  nav.parentNode.insertBefore(placeholder, nav);
-  
-  window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    let scrollingDown = scrollTop > lastScrollTop;
-    
-    // Check if we've scrolled past the nav completely
-    if (scrollTop >= navOriginalPosition + navHeight) {
-      // Nav is completely out of view
-      if (!isFixed) {
-        // First time becoming fixed - apply fixed positioning
-        placeholder.style.display = 'block';
-        nav.style.position = 'fixed';
-        nav.style.top = '0';
-        
-        // If scrolling down, immediately hide it without transition
-        if (scrollingDown) {
-          nav.style.transition = 'none';
-          nav.style.transform = 'translateY(-100%)';
-          // Force reflow to apply the transform without transition
-          nav.offsetHeight;
-          // Restore transition for future changes
-          nav.style.transition = 'transform 0.3s ease-in-out';
-        } else {
-          nav.style.transform = 'translateY(0)';
-        }
-        
-        isFixed = true;
-      } else {
-        // Already fixed, handle hide/show
-        if (scrollingDown) {
-          nav.style.transform = 'translateY(-100%)';
-        } else {
-          nav.style.transform = 'translateY(0)';
-        }
-      }
-    } else if (scrollTop <= navOriginalPosition) {
-      // We're at or above the original nav position
-      if (isFixed) {
-        placeholder.style.display = 'none';
-        nav.style.position = 'static';
-        nav.style.transform = 'translateY(0)';
-        isFixed = false;
-      }
-    }
-    
-    lastScrollTop = scrollTop;
-  });
+          // Get the original script functionality
+          const nav = document.querySelector('.nav');
+          const navHeight = nav.offsetHeight;
+          const navOriginalPosition = nav.offsetTop;
+          let lastScrollTop = 0;
+          let isFixed = false;
+          
+          // Set initial nav properties
+          nav.style.backgroundColor = '#fffff4';
+          nav.style.width = '100%';
+          nav.style.transition = 'transform 0.2s ease-in-out';
+          nav.style.zIndex = '1000';
+          
+          // Create a placeholder to prevent layout shifts
+          const placeholder = document.createElement('div');
+          placeholder.style.height = navHeight + 'px';
+          placeholder.style.display = 'none';
+          nav.parentNode.insertBefore(placeholder, nav);
+          
+          window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let scrollingDown = scrollTop > lastScrollTop;
+            
+            // Check if we've scrolled past the nav completely
+            if (scrollTop >= navOriginalPosition + navHeight) {
+              // Nav is completely out of view
+              if (!isFixed) {
+                // First time becoming fixed - apply fixed positioning
+                placeholder.style.display = 'block';
+                nav.style.position = 'fixed';
+                nav.style.top = '0';
+                
+                // If scrolling down, immediately hide it without transition
+                if (scrollingDown) {
+                  nav.style.transition = 'none';
+                  nav.style.transform = 'translateY(-100%)';
+                  // Force reflow to apply the transform without transition
+                  nav.offsetHeight;
+                  // Restore transition for future changes
+                  nav.style.transition = 'transform 0.3s ease-in-out';
+                } else {
+                  nav.style.transform = 'translateY(0)';
+                }
+                
+                isFixed = true;
+              } else {
+                // Already fixed, handle hide/show
+                if (scrollingDown) {
+                  nav.style.transform = 'translateY(-100%)';
+                } else {
+                  nav.style.transform = 'translateY(0)';
+                }
+              }
+            } else if (scrollTop <= navOriginalPosition) {
+              // We're at or above the original nav position
+              if (isFixed) {
+                placeholder.style.display = 'none';
+                nav.style.position = 'static';
+                nav.style.transform = 'translateY(0)';
+                isFixed = false;
+              }
+            }
+            
+            lastScrollTop = scrollTop;
+          });
 
-  // Search functionality
-  const searchLink = document.querySelector('.nav__links__right a[href="collection.html"]');
-  const searchContainer = document.getElementById('searchContainer');
-  const searchClose = document.getElementById('searchClose');
-  const searchInput = document.querySelector('.search-input');
+          // Search functionality
+          const searchLink = document.querySelector('.nav__links__right a[href="collection.html"]');
+          const searchContainer = document.getElementById('searchContainer');
+          const searchClose = document.getElementById('searchClose');
+          const searchInput = document.querySelector('.search-input');
 
-  // Set CSS variable for nav height
-  document.documentElement.style.setProperty('--nav-height', navHeight + 'px');
+          // Set CSS variable for nav height
+          document.documentElement.style.setProperty('--nav-height', navHeight + 'px');
 
-  // Open search bar when clicking on Search link
-  searchLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    searchContainer.style.display = 'block';
-    searchInput.focus();
-  });
+          // Open search bar when clicking on Search link
+          searchLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchContainer.style.display = 'block';
+            searchInput.focus();
+          });
 
-  // Close search bar when clicking on X button
-  searchClose.addEventListener('click', function() {
-    searchContainer.style.display = 'none';
-  });
+          // Close search bar when clicking on X button
+          searchClose.addEventListener('click', function() {
+            searchContainer.style.display = 'none';
+          });
 
-  // Close search bar when pressing Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && searchContainer.style.display === 'block') {
-      searchContainer.style.display = 'none';
-    }
-  });
-});
+          // Close search bar when pressing Escape key
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && searchContainer.style.display === 'block') {
+              searchContainer.style.display = 'none';
+            }
+          });
+        });
         </script>
     </head>
 </html>
