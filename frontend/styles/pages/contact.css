@@ -108,7 +108,6 @@ body::before {
     font-size: 0.9rem;
     font-weight: 300;
     letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .home__link a {
