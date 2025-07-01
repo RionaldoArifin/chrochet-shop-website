@@ -30,11 +30,18 @@
                 <a class="nav__logo" href="index.html" >KNIT</a>
 
                 <div class="nav__links__right">
-                    <a class=nav__link href="collection.html">Search</a>
+                    <a class="nav__link search_bar">Search</a>
                     <a class=nav__link href="account.html">Account</a>
                     <a class=nav__link href="cart.html">Cart</a>
                 </div>
             </nav>
+
+            <div class="search-container" id="searchContainer">
+              <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button type="button" class="search-close" id="searchClose">✕</button>
+              </form>
+            </div>
 
             <div class="home__link">
                 <p><a class="home-link" href="index.html">HOME</a> / ACCOUNT</p>
@@ -146,148 +153,7 @@
                 </div>
                 
             </footer>
-            
+            <script type="module" src="./backend/scripts/account.js"></script>
         </body>
-
-        <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            const nav = document.querySelector('.nav');
-            const navHeight = nav.offsetHeight;
-            const navOriginalPosition = nav.offsetTop;
-            let lastScrollTop = 0;
-            let isFixed = false;
-            
-            // Set initial nav properties
-            nav.style.backgroundColor = '#fffff4';
-            nav.style.width = '100%';
-            nav.style.transition = 'transform 0.2s ease-in-out';
-            nav.style.zIndex = '1000';
-            
-            // Create a placeholder to prevent layout shifts
-            const placeholder = document.createElement('div');
-            placeholder.style.height = navHeight + 'px';
-            placeholder.style.display = 'none';
-            nav.parentNode.insertBefore(placeholder, nav);
-            
-            window.addEventListener('scroll', function() {
-              let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-              let scrollingDown = scrollTop > lastScrollTop;
-              
-              // Check if we've scrolled past the nav completely
-              if (scrollTop >= navOriginalPosition + navHeight) {
-                // Nav is completely out of view
-                if (!isFixed) {
-                  // First time becoming fixed - apply fixed positioning
-                  placeholder.style.display = 'block';
-                  nav.style.position = 'fixed';
-                  nav.style.top = '0';
-                  
-                  // If scrolling down, immediately hide it without transition
-                  if (scrollingDown) {
-                    nav.style.transition = 'none';
-                    nav.style.transform = 'translateY(-100%)';
-                    // Force reflow to apply the transform without transition
-                    nav.offsetHeight;
-                    // Restore transition for future changes
-                    nav.style.transition = 'transform 0.3s ease-in-out';
-                  } else {
-                    nav.style.transform = 'translateY(0)';
-                  }
-                  
-                  isFixed = true;
-                } else {
-                  // Already fixed, handle hide/show
-                  if (scrollingDown) {
-                    nav.style.transform = 'translateY(-100%)';
-                  } else {
-                    nav.style.transform = 'translateY(0)';
-                  }
-                }
-              } else if (scrollTop <= navOriginalPosition) {
-                // We're at or above the original nav position
-                if (isFixed) {
-                  placeholder.style.display = 'none';
-                  nav.style.position = 'static';
-                  nav.style.transform = 'translateY(0)';
-                  isFixed = false;
-                }
-              }
-              
-              lastScrollTop = scrollTop;
-            });
-          });
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Button elements
-    const loginBtn = document.querySelector('.btn-login');
-    const registerBtn = document.querySelector('.btn-register');
-    const googleBtn = document.querySelector('.btn-google');
-    
-    // Modal elements
-    const loginModal = document.getElementById('loginModal');
-    const registerModal = document.getElementById('registerModal');
-    const closeButtons = document.querySelectorAll('.close-modal');
-    
-    // Open login modal
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function() {
-            loginModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        });
-    }
-    
-    // Open register modal
-    if (registerBtn) {
-        registerBtn.addEventListener('click', function() {
-            registerModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        });
-    }
-    
-    // Google sign-in
-    if (googleBtn) {
-        googleBtn.addEventListener('click', function() {
-            // This would be replaced with actual Google OAuth implementation
-            alert('Google authentication would be initiated here.');
-        });
-    }
-    
-    // Close modals when clicking the X
-    closeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-            registerModal.style.display = 'none';
-            document.body.style.overflow = ''; // Restore scrolling
-        });
-    });
-    
-    // Close modals when clicking outside the content
-    window.addEventListener('click', function(event) {
-        if (event.target === loginModal) {
-            loginModal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        if (event.target === registerModal) {
-            registerModal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-    });
-    
-    // Handle form submissions
-    const authForms = document.querySelectorAll('.auth-form');
-    authForms.forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Here you would handle the form submission, e.g., send to server
-            alert('Form submitted! In a real implementation, this would be sent to your authentication server.');
-            
-            // Close the modal after submission
-            loginModal.style.display = 'none';
-            registerModal.style.display = 'none';
-            document.body.style.overflow = '';
-        });
-    });
-});
-        </script>
     </head>
 </html>
