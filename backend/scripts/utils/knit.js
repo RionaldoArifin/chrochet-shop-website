@@ -23,7 +23,7 @@ export function RenderNavigationBar(){
         document.documentElement.style.setProperty('--nav-height', navHeight + 'px');
 
         window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let scrollTop = window.pageYOffset ?? document.documentElement.scrollTop;
             let scrollingDown = scrollTop > lastScrollTop;
             
             // Close search bar when scrolling
@@ -33,57 +33,59 @@ export function RenderNavigationBar(){
 
             // Check if we've scrolled past the nav completely
             if (scrollTop > navOriginalPosition + navHeight) {
-            if (!isFixed) {
-                // First time we're fixing it - IMPORTANT: Hide before changing position
-                nav.style.transition = 'none'; // Disable transition temporarily
-                nav.style.transform = 'translateY(-100%)'; // Hide first
-                
-                // Use a very small timeout to ensure hiding is applied
-                setTimeout(function() {
-                // Now make it fixed (while hidden)
-                placeholder.style.display = 'block';
-                nav.style.position = 'fixed';
-                nav.style.top = '0';
-                
-                // Re-enable transition for future changes
-                setTimeout(function() {
-                    nav.style.transition = 'transform 0.3s ease-in-out';
+                if (!isFixed) {
+                    nav.style.transition = 'none'; // Disable transition temporarily when scrolling down,  bcs we want transition only when scrolling up
+                    nav.style.transform = 'translateY(-100%)'; // Hide by moving nav upwards (until it's out of the screen) (animation)
                     
-                    // Show it immediately if scrolling up
+                    // Use a very small timeout to ensure hiding is applied
+                    setTimeout(function() {
+                        // Now make it fixed (while hidden)
+                        placeholder.style.display = 'block'; // display the placeholder to prevent layout shifts
+                        nav.style.position = 'fixed'; // make the nav fixed when it's hidden
+                        nav.style.top = '0'; // stick the nav to the top
+                        
+                        // Re-enable transition for future changes
+                        // Without the timeout, the browser might batch multiple style changes together, which could cause visual glitches or skipped animations.
+                        setTimeout(function() {
+                            nav.style.transition = 'transform 0.3s ease-in-out';
+                            
+                            // Show the nav moving down from out of view downwards to view, immediately if scrolling up
+                            if (!scrollingDown) {
+                            nav.style.transform = 'translateY(0)';
+                            }
+                        }, 10); // set second timeout 10ms
+                    }, 5); // set first timeout 5ms
+                    
+                    isFixed = true;
+                } 
+                else {
+                    // When already fixed, control visibility based on scroll direction
                     if (!scrollingDown) {
-                    nav.style.transform = 'translateY(0)';
+                    nav.style.transform = 'translateY(0)'; // Show when scrolling up
+                    } else {
+                    nav.style.transform = 'translateY(-100%)'; // Hide when scrolling down
                     }
-                }, 10);
-                }, 5);
-                
-                isFixed = true;
-            } else {
-                // Already fixed, control visibility based on scroll direction
-                if (!scrollingDown) {
-                nav.style.transform = 'translateY(0)'; // Show when scrolling up
-                } else {
-                nav.style.transform = 'translateY(-100%)'; // Hide when scrolling down
+                }
+            } 
+            else if (scrollTop <= navOriginalPosition) {
+                // We're at or above the original position
+                if (isFixed) {
+                    // Return to normal, non-fixed position
+                    nav.style.transition = 'none'; // Disable transition temporarily
+                    placeholder.style.display = 'none'; // Hide the placeholder to allow layout shifts
+                    nav.style.position = 'static'; // position: static is the default positioning for all elements.
+                    nav.style.transform = 'translateY(0)';
+                    
+                    // Re-enable transition after position change
+                    setTimeout(function() {
+                    nav.style.transition = 'transform 0.3s ease-in-out';
+                    }, 10);
+                    
+                    isFixed = false;
                 }
             }
-            } else if (scrollTop <= navOriginalPosition) {
-            // We're at or above the original position
-            if (isFixed) {
-                // Return to normal, non-fixed position
-                nav.style.transition = 'none'; // Disable transition temporarily
-                placeholder.style.display = 'none';
-                nav.style.position = 'static';
-                nav.style.transform = 'translateY(0)';
-                
-                // Re-enable transition after position change
-                setTimeout(function() {
-                nav.style.transition = 'transform 0.3s ease-in-out';
-                }, 10);
-                
-                isFixed = false;
-            }
-            }
             
-            lastScrollTop = scrollTop;
+            lastScrollTop = scrollTop; // update lastScrollTop,  ensures that the next scroll event uses the most recent scroll position for accurate comparisons.
         });
     });
 }
