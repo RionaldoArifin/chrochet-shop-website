@@ -24,3 +24,4 @@ function renderProductsGrid() {
 
   document.querySelector('.js-product-grid').innerHTML = productsHTML;
 }
+
