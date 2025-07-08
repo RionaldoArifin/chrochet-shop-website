@@ -360,7 +360,7 @@ body::before {
 }
 
 .page-link:hover {
-    background-color: var(--secondary-bg);
+    background-color: rgb(237, 237, 224);
     cursor: pointer;
 }
 

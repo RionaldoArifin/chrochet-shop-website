@@ -12,6 +12,7 @@ class Product{
     id;
     image;
     name;
+    description;
     rating;
     price;
     sale;
@@ -21,6 +22,7 @@ class Product{
         this.id = productDetails.id;
         this.image = productDetails.image;
         this.name = productDetails.name;
+        this.description = productDetails.description;
         this.rating = productDetails.rating;
         this.price = productDetails.price;
         this.sale = productDetails.sale || false; // Default to false if not provided
@@ -28,7 +30,7 @@ class Product{
     }
 
     getPrice() {
-        return `HKD${this.price}`;
+        // return `HKD${this.price}`;
     }
 
     extraInfoHTML() {

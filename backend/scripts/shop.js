@@ -6,10 +6,11 @@ RenderSearchBar();
 
 const productPerPage = 8; // Number of products to display per page
 
-const urlParams = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search); // Get the URL from the browser
 let currentPage = parseInt(urlParams.get('page')) || 1; // Current page number, default to 1 if not specified
 const totalPages = Math.ceil(products.length / productPerPage); // Total number of pages
 
+// Ensure currentPage is within valid bounds
 if (currentPage < 1 || currentPage > totalPages) {
   currentPage = 1; // Reset to first page if out of bounds
 }
@@ -17,20 +18,23 @@ if (currentPage < 1 || currentPage > totalPages) {
 renderProductsGrid(currentPage);
 renderPagination(currentPage, totalPages);
 
+
+// Function to render the products grid based on the current page
 function renderProductsGrid(page) {
-  const startIndex = (page - 1) * productPerPage;
-  const endIndex = startIndex + productPerPage;
+  const startIndex = (page - 1) * productPerPage; // Where to start in the products array depending how many products are shown in a page
+  const endIndex = startIndex + productPerPage; 
   const productsToDisplay = products.slice(startIndex, endIndex);
   
   let productsHTML = '';
 
   productsToDisplay.forEach((product) => {
-    let saleClass = ``;
-    let priceHTML = `<h5 class="item-price">${product.getPrice()}</h5>`;
+    let saleClass = ``; // Default class for products not on sale
+    let priceHTML = `<h5 class="item-price">HKD${product.price}</h5>`; // default price with no sale
 
     if (product.sale === true) {
       saleClass = `sale__item`;
 
+      // if on sale, change the priceHTML to show original and discounted price
       priceHTML = `
         <div class="sale__item__price">
           <h5 class="original-price">HKD${product.price}</h5>
@@ -46,7 +50,7 @@ function renderProductsGrid(page) {
             </div>
 
             <h4>${product.name}</h4>
-            <h6>Long sleeve knitted sweater</h6>
+            <h6>${product.description}</h6>
             ${priceHTML}
         </a>`; 
   });
@@ -54,6 +58,8 @@ function renderProductsGrid(page) {
   document.querySelector('.js-product-grid').innerHTML = productsHTML;
 }
 
+
+// Function to render pagination links
 function renderPagination(currentPage, totalPages) {
   let paginationHTML = '';
 
@@ -62,6 +68,7 @@ function renderPagination(currentPage, totalPages) {
   <a href="#" class="page-link prev-page" ${currentPage === 1 ? 'disabled' : ''}>
     <span>&lt;</span>
   </a>`;
+  // &lt is (<) symbol
 
   // Generate limited page numbers with ellipses
   const pagesToShow = generatePagination(currentPage, totalPages);
@@ -74,7 +81,7 @@ function renderPagination(currentPage, totalPages) {
       <a href="#" class="page-link page-number ${currentPage === pageNum ? 'active' : ''}" data-page="${pageNum}">
         ${pageNum}
       </a>`;
-    }
+    } // saves the pagenumber into the dataset.page attribute of the link
   });
 
   // Next page button
@@ -88,8 +95,8 @@ function renderPagination(currentPage, totalPages) {
   // Add event listeners to page numbers
   document.querySelectorAll('.page-number').forEach((link) => {
     link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const page = parseInt(link.dataset.page);
+      event.preventDefault(); // stops the browser from following the link's href attribute, otherwise the browser would try to navigate to "#" (top of page) when clicked
+      const page = parseInt(link.dataset.page); //parseInt() converts this string value to an integer, link.dataset.page is the value of the data-page attribute of the link and (link.) is a variable, can be anything like diu.dataset.page
       navigateToPage(page);
     });
   });
@@ -120,7 +127,11 @@ function renderPagination(currentPage, totalPages) {
 function generatePagination(currentPage, totalPages) {
   // If there are 7 or fewer pages, show all pages
   if (totalPages <= 7) {
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
+    let pageList = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageList.push(i);
+    }
+    return pageList;
   }
   
   // Otherwise, show a limited number with ellipses
@@ -146,13 +157,36 @@ function generatePagination(currentPage, totalPages) {
 }
 
 function navigateToPage(page) {
-  const url = new URL(window.location);
-  url.searchParams.set('page', page);
+  const url = new URL(window.location); // get the current page URL
+  url.searchParams.set('page', page); // ?page=X where X is the variable page (the page number)
   window.history.pushState({}, '', url);
   
   currentPage = page;
 
-  document.querySelector('.js-product-grid').scrollIntoView({behavior: 'smooth',});
+    // Get the product grid element
+  const productGrid = document.querySelector('.js-product-grid');
+  
+  // Get the current nav state
+  const nav = document.querySelector('.nav');
+  const isNavFixed = nav.style.position === 'fixed';
+  const navHeight = nav.offsetHeight; // measures the actual height of the navigation bar in pixels
+  
+  // Calculate the appropriate scroll position
+  let scrollPosition;
+  
+  if (isNavFixed) {
+    // If nav is fixed, account for its height bcs there is placeholder
+    // to prevent layout shifts when the nav is fixed
+    scrollPosition = productGrid.offsetTop - navHeight;
+  } else {
+    // If nav is in normal flow, scroll to the grid's position
+    scrollPosition = productGrid.offsetTop;
+  }
+  
+  window.scrollTo({
+    top: scrollPosition,
+    behavior: 'smooth'
+  });
 
   //Re-render the products and paginations
   renderProductsGrid(currentPage);
