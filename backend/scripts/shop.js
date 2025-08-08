@@ -44,7 +44,7 @@ function renderProductsGrid(page) {
     }
 
       productsHTML += `
-        <a class="new-items__collection ${saleClass}" href="/product.html?id=${product.id}">
+        <a class="new-items__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
             <div class="new-items__image__cover">
                 <img class="new-items__image" alt="New-items image" src="${product.image}">
             </div>

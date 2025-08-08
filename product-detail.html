@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" type="fronend/image/x-icon" href="frontend/images/yarn-logo-no-background-big.png" />
+    <title>KNIT</title>
+    <link rel="stylesheet" href="frontend/styles/pages/product-detail.css" />
+
+
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Radley:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Instagram Logo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <body>
+        <nav class="nav">
+            <div class="nav__links__left">
+                <a class=nav__link href="shop.html">Shop</a>
+                <a class=nav__link href="about.html">About</a>
+                <a class=nav__link href="contact.html">Contact Us</a>
+            </div>
+
+            <a class="nav__logo" href="index.html" >KNIT</a>
+
+            <div class="nav__links__right">
+                <a class="nav__link search_bar">Search</a>
+                <a class="nav__link" href="account.html">Account</a>
+                <a class="nav__link" href="cart.html">Cart</a>
+            </div>
+        </nav>
+
+        <div class="search-container" id="searchContainer">
+          <form class="search-form">
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button type="button" class="search-close" id="searchClose">✕</button>
+          </form>
+        </div>
+
+        <div class="home__link">
+            <p><a class="home-link" href="index.html">HOME</a> / <span id="productHomeLink">Loading...</span></p>
+        </div>
+
+        <div class="product__image" id="productImage"></div>
+
+        <div class="details__container">
+            <div class="product-detail-container">
+                <div class="product__details">
+                    <h1 class="product__title" id="productTitle"></h1>
+                    <p class="product__description" id="productDescription"></p>
+                    <p class="product__price" id="productPrice"></p>
+                    <p class="model"></p>
+                </div>
+
+                <div class="product-dropdown-deatils">
+                        <div class="size-guide">
+                            <h3>Size Guide</h3>
+                            <p>Use the size guide below to find your perfect fit.</p>
+                            <table class="size-table">
+                                <thead>
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>Chest (cm)</th>
+                                        <th>Length (cm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>S</td>
+                                        <td>92</td>
+                                        <td>68</td>
+                                    </tr>
+                                    <tr>
+                                        <td>M</td>
+                                        <td>96</td>
+                                        <td>70</td>
+                                    </tr>
+                                    <tr>
+                                        <td>L</td>
+                                        <td>100</td>
+                                        <td>72</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XL</td>
+                                        <td>104</td>
+                                        <td>74</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+
+                        <div class="shipping-info">
+                            <h3>Shipping Information</h3>
+                            <p>We offer worldwide shipping. Orders are processed within 1-3 business days. Delivery times vary based on location.</p>
+                            <p>For more details, visit our <a href="shipping.html">Shipping Policy</a>.</p>
+                        </div>
+
+                        <div class="FAQ">
+                            <h3>Frequently Asked Questions</h3>
+                            <p><strong>Q: How do I care for my t-shirt?</strong></p>
+                            <p>A: Machine wash cold with like colors, tumble dry low, and iron on low heat if needed.</p>
+                            
+                            <p><strong>Q: Can I return or exchange this item?</strong></p>
+                            <p>A: Yes, we accept returns and exchanges within 30 days of purchase. Please refer to our <a href="returns.html">Return Policy</a> for more details.</p>
+                        </div>
+
+                        <div class="return-policy">
+                            <h3>Return Policy</h3>
+                            <p>If you are not completely satisfied with your purchase, you may return it within 7 days for a full refund or exchange. The item must be in its original condition and packaging.</p>
+                            <p>For more information, please visit our <a href="returns.html">Return Policy</a>.</p>
+                        </div>  
+                    </div>            
+            </div>
+
+            <div class="buttons__container">
+                <div class="colors__container">
+                    <h3>Colors</h3>
+                    <input type="text" id="colorBlack" name="color" value="Request your color">
+                </div>
+
+                <div class="product-buttons-container">
+                    <div class="product__sizes">
+                        <h3>Size</h3>
+                        <div class="size-options">
+                            <button class="size-button" id="sizeXS">XS</button>
+                            <button class="size-button" id="sizeS">S</button>
+                            <button class="size-button" id="sizeM">M</button>
+                            <button class="size-button" id="sizeL">L</button>
+                            <button class="size-button" id="sizeXL">XL</button>
+                            <button class="size-button" id="sizeXXL">XXL</button>
+                        </div>
+                    </div>
+                    <div class="add-to-cart__container">
+                        <button class="add-to-cart-button">Add to Cart</button>
+                        <div class="quantity-selector">
+                            <button class="quantity-button" id="decreaseQuantity">-</button>
+                            <span class="quantity-value" id="quantityValue">1</span>
+                            <button class="quantity-button" id="increaseQuantity">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+    
+        <div class="related-products">
+            <div class="collection__preview">
+                    <div class="preview__title">
+                        <span class="new-items__title">Related Products</span>
+
+                        <div class="new-items__button__section">
+                            <button class="new-items__button">View all</button>
+                        </div>
+                    </div>
+
+                    <div class="preview__gallery">
+                        <div class="new-items__collection">
+                            <div class="new-items__image__cover">
+                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
+                            </div>
+
+                            <h4>NOIR CABLE KNIT-SWEATER</h4>
+                            <h6>Long sleeve knitted sweater</h6>
+                            <h5>$35</h4>
+                        </div>
+
+                        <div class="new-items__collection">
+                            <div class="new-items__image__cover">
+                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
+                            </div>
+
+                            <h4>NOIR CABLE KNIT-SWEATER</h4>
+                            <h6>Long sleeve knitted sweater</h6>
+                            <h5>$35</h4>
+                        </div>
+
+                        <div class="new-items__collection">
+                            <div class="new-items__image__cover">
+                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
+                            </div>
+
+                            <h4>NOIR CABLE KNIT-SWEATER</h4>
+                            <h6>Long sleeve knitted sweater</h6>
+                            <h5>$35</h4>
+                        </div>
+
+                        <div class="new-items__collection">
+                            <div class="new-items__image__cover">
+                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
+                            </div>
+
+                            <h4>NOIR CABLE KNIT-SWEATER</h4>
+                            <h6>Long sleeve knitted sweater</h6>
+                            <h5>$35</h4>
+                        </div>
+                    </div>
+                    
+                </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <h1 class="logo__name">KNIT</h1>
+                    <p>Knit is a local, handmade knitting and crochet company in Lampung, Indonesia, offering quality modest apparel, accessories, and creative courses for every skill level.</p>
+                    
+                    <h3>Follow us</h3>
+                    <a href="https://www.instagram.com/craft_koe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="fa fa-instagram"> craft_koe</a>
+                    
+                </div>
+
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Information</h4>
+                        <a href="#">Size Guide</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">About Us</a>
+                    </div>
+                </div>
+
+                <div class="footer__bottom">
+                    <p>&copy; 2025 All rights reserved.</p>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            
+        </footer>
+        <script type="module" src="./backend/scripts/product-detail.js"></script>        
+    </body>
+
+    
+  </head>
+</html>
