@@ -15,6 +15,7 @@
     --text-light: #6d6d6d;
     --border-light: #eaeaea;
     --spacing-unit: 1rem;
+    --secondary-border: rgb(198, 198, 198);
 }
 
 body {
@@ -28,7 +29,7 @@ body {
 }
 
 /* Add subtle grid lines to background */
-/* body::before {
+body::before {
     content: "";
     position: fixed;
     top: 0;
@@ -41,14 +42,14 @@ body {
     background-size: 80px 80px;
     z-index: -1;
     pointer-events: none;
-} */
+}
 
 .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 9.2rem;
-    /* border-bottom: 1px solid var(--border-light); */
+    border-bottom: 1px solid var(--border-light);
     /* background-color: var(--third-bg); */
 }
 
@@ -143,10 +144,23 @@ body {
 
 .product__image {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    /* align-items: center; */
+    /* justify-content: space-between; */
     margin: 0.3rem 10rem;   
     gap: 1rem;
+    height: auto;
+    /* aspect-ratio: 1 / 1; */
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.product__image img {
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    /* display: block; */
+    border-radius: 10px 10px 0 0;
 }
 
 .new-items__image {
@@ -164,7 +178,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 1rem 0rem 1.5rem 10rem;
+    margin: 0rem 0rem 1.5rem 10rem;
     flex: 1;
     /* background-color: var(--secondary-bg); */
 }
@@ -189,7 +203,7 @@ body {
 }
 
 .item-price {
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: var(--text-dark);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
@@ -200,11 +214,11 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem; 
-    padding: 1.5rem 0.3rem;
+    padding: 1.5rem 0rem;
 }
 
 .original-price {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: var(--text-light);
     text-decoration: line-through; 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -214,7 +228,7 @@ body {
 }
 
 .discounted-price {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     color: var(--sale-color); 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
@@ -229,7 +243,7 @@ body {
 
 .colors__container > h3 {
     font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .colors__container > input[type="text"] {
@@ -239,6 +253,7 @@ body {
     font-family: "Radley", serif;
     font-size: 1rem;
     color: var(--text-medium);
+    /* border: 1px solid var(--secondary-border); */
     border: 1px solid var(--border-light);
     /* border-radius: 5px; */
     background-color: white;
@@ -256,26 +271,28 @@ body {
     flex-direction: column;
     color: var(--text-dark); 
     letter-spacing: 0.07em;
-    gap: 1.2rem;
-    margin-top: 1.7rem;
+    gap: 1.8rem;
+    margin-top: 1.2rem;
 }
 
 .details__container {
     display: flex;
     flex-direction: row;
     gap: 5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .buttons__container {
     flex: 1;
     margin-right: 10rem;
+    margin-top: 0.8rem;
+    margin-left: 1rem;
 }
 .product__sizes {
     display: flex;
-    flex-direction: row;
-    gap: 0.7rem;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.3rem;
+    /* align-items: center; */
 }
 
 .product__sizes h3 {
@@ -288,15 +305,30 @@ body {
     margin-left: 0.1rem;
     padding: 0.1rem 0.5rem;
     background-color: white;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    /* box-shadow: 0 1px 8px rgba(0,0,0,0.05); */
+    /* border: 1px solid var(--secondary-border); */
     border: 1px solid var(--border-light);
-    border-radius: 3px;
+    /* border-radius: 3px; */
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .size-button:hover {
     cursor: pointer;
     background-color: #fbfbfb;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
+}
+
+.size-button:focus{
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+
+.size-guide-link {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    /* text-decoration: none; */
+    margin-left: 1rem;
 }
 
 .add-to-cart__container {
@@ -312,46 +344,78 @@ body {
     padding: 0.6rem 13rem;
     font-size: 1.2rem;
     font-family: inherit;
+    transition: transform 0.5s ease;
+}
+
+.add-to-cart-button:hover {
+    cursor: pointer;
+    transform: scale(1.03);
 }
 
 .quantity-selector {
-    box-shadow: 0 1px 8px rgba(0,0,0,0.07);
-    border: 1px solid var(--border-light);
-    border-radius: 100px;
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-    background-color: white;
+  position: relative; /* For proper positioning of the buttons */
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--secondary-border);
+  border-radius: 100px;
+  padding: 0.6rem 1.5rem;
+  background-color: white;
 }
 
-.quantity-selector .quantity-button {
-    font-size: 1rem;
-    padding: none;
-    border: none;
-    background-color: transparent;
+.quantity-button {
+  position: relative; /* For the transform to work properly */
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Create an invisible touch target */
+  transform-origin: center;
+  z-index: 2; /* Ensure button is above other content */
 }
 
-.quantity-selector .quantity-value {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0rem 3.5rem;
-    font-size: 1rem;
+/* Create invisible larger touch areas */
+.quantity-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px; /* Larger invisible touch area */
+  height: 46px;
+  /* background: black;  */
+  border-radius: 50%;
+  z-index: -1; /* Behind the button content */
 }
 
-.product-dropdown-deatils {
+.quantity-value {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0rem 3.5rem;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.product-dropdown-details {
     max-width: 800px;
     margin-top: 0.8rem;
   }
 
-  .product-dropdown-deatils > div {
+  .product-dropdown-details > div {
     margin-top: 0.5rem;
-    border: 1px solid #e0e0e0;
+    /* border: 1px solid #e0e0e0; */
+    /* border: 1px solid var(--secondary-border); */
+    border: 1px solid var(--border-light);
     border-radius: 0px;
     overflow: hidden;
     background-color: white;
   }
 
-  .product-dropdown-deatils > div > h3 {
+  .product-dropdown-details > div > h3 {
     margin: 0;
-    padding: 15px 20px;
+    padding: 13px 20px;
     cursor: pointer;
     position: relative;
     display: flex;
@@ -360,43 +424,52 @@ body {
     border-bottom: 1px solid transparent;
   }
 
-  .product-dropdown-deatils > div > h3:hover {
+  .product-dropdown-details > div > h3:hover {
     background-color: #fbfbfb;
   }
 
-  .product-dropdown-deatils > div > h3::after {
+  .product-dropdown-details > div > h3::after {
     content: "+";
     font-size: 20px;
     transition: transform 0.3s ease;
   }
 
-  .product-dropdown-deatils > div.active > h3 {
+  .product-dropdown-details > div.active > h3 {
     border-bottom-color: #e0e0e0;
     
   }
 
-  .product-dropdown-deatils > div.active > h3::after {
+  .product-dropdown-details > div.active > h3::after {
     transform: rotate(45deg);
   }
 
-  .product-dropdown-deatils > div > *:not(h3) {
+ .product-dropdown-details > div > .questions__faq {
     display: none;
-    padding: 20px;
+    padding: 15px 20px 4px 20px;
   }
 
-  .product-dropdown-deatils > div.active > *:not(h3) {
+  .product-dropdown-details > div > p {
+    display: none;
+    padding: 15px 20px;
+  }
+
+  .product-dropdown-details > div > table {
+    display: none;
+    padding: 0px 20px 20px 20px;;
+  }
+
+  .product-dropdown-details > div.active > *:not(h3) {
     display: block;
   }
 
   .size-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
   }
 
   .size-table th, .size-table td {
     border: 1px solid #ddd;
-    padding: 8px 12px;
+    padding: 4px 16px;
     text-align: center;
   }
 
@@ -408,10 +481,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0rem 8rem 2.5rem 8rem;
+    margin: 3rem 10rem 2.5rem 10rem;
 }
 
-.new-items__title{
+.related-items__title{
     padding: 0rem 0.7rem;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 2.4rem;
@@ -421,7 +494,7 @@ body {
     position: relative;
 }
 
-.new-items__button {
+.related-items__button {
     background-color: #fff;
     border-radius: 20px;
     border: 1px solid #dadada;
@@ -434,12 +507,12 @@ body {
     transition: all 0.3s ease;
 }
 
-.new-items__button:hover {
+.related-items__button:hover {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transform: translateY(-2px);
 }
 
-.new-items__image__cover {
+.related-items__image__cover {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
@@ -449,7 +522,7 @@ body {
     justify-content: center;
 }
 
-.new-items__image__cover img {
+.related-items__image__cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -463,39 +536,14 @@ body {
     position: relative;
 }
 
-/* Add grid background to the collection preview section */
-/* .collection__preview::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
-    background-size: 80px 80px;
-    z-index: 0;
-    pointer-events: none;
-} */
-
-/* Ensure content is above the grid */
-.preview__title, .preview__gallery {
-    position: relative;
-    z-index: 1;
-}
-
-
-
-
 .preview__gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
-    margin: 0.6rem 8rem;
+    margin: 0.6rem 10rem;
 }
 
-.new-items__collection {
+.related-items__collection {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 1px 8px rgba(0,0,0,0.04);
@@ -505,14 +553,14 @@ body {
     overflow: hidden;
 }
 
-.new-items__collection:hover {
+.related-items__collection:hover {
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     transform: translateY(-5px);
 }
 
 /* Add a quick-view button on hover */
-.new-items__collection::after {
+.related-items__collection::after {
     content: "View Product";
     position: absolute;
     bottom: -42px;
@@ -528,15 +576,15 @@ body {
     transition: bottom 0.3s ease;
 }
 
-.new-items__collection:hover::after {
+.related-items__collection:hover::after {
     bottom: 0;
 }
 
-.new-items__collection:hover .new-items__image__cover img {
+.related-items__collection:hover .related-items__image__cover img {
     transform: scale(1.05);
 }
 
-.new-items__collection h4 {
+.related-items__collection h4 {
     padding: 0.8rem 0rem 0.3rem 1rem;
     font-size: 1.1rem;
     font-weight: 500;
@@ -545,7 +593,7 @@ body {
     text-transform: uppercase;
 }
 
-.new-items__collection h6 {
+.related-items__collection h6 {
     font-size: 0.75rem;
     padding: 0rem 1rem;
     font-weight: 500;
@@ -554,7 +602,7 @@ body {
     letter-spacing: 0.2em;
 }
 
-.new-items__collection h5 {
+.related-items__collection h5 {
     font-size: 1.1rem;
     padding: 0.8rem 0rem 1rem 1rem;
     color: var(--text-dark);
@@ -564,7 +612,7 @@ body {
 }
 
 /* Sale tag */
-.new-items__collection:nth-child(3n)::before {
+.related-items__collection:nth-child(3n)::before {
     content: "SALE";
     position: absolute;
     top: 10px;
@@ -583,7 +631,7 @@ body {
 
 
 .footer {
-    background-color: var(--primary-bg);
+    background-color: var(--secondary-bg);
     padding: 4rem 8rem;
     position: relative;
 }
@@ -595,7 +643,8 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(to right, var(--accent-color), transparent);
+    /* background: linear-gradient(to right, var(--accent-color), transparent); */
+    border-top: 1px solid var(--secondary-border);
 }
 
 .footer__content {

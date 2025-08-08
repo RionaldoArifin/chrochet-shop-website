@@ -4,14 +4,16 @@ import { products } from './data/products.js';
 RenderNavigationBar();
 RenderSearchBar();
 RenderDropDown();
+setupSizeGuideLink();
+setupQuantitySelector();
 
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id');
 
-//Find the product with matching ID
+// Find the product with matching ID
 const product = products.find(p => p.id === productId);
 
-//if not found
+// if not found
 if (!product) {
   document.getElementById('productTitle').textContent = 'Product Not Found';
   document.getElementById('productDescription').textContent = 'Sorry, the product you are looking for does not exist.';
@@ -40,7 +42,7 @@ function displayProductDetails(product) {
       <span class="discounted-price">HKD${product.discountedPrice}</span>
     `;
   } else {
-    document.getElementById('productPrice').innerHTML = `<span class="original-price">HKD${product.price}</span>`;
+    document.getElementById('productPrice').innerHTML = `<span class="item-price">HKD${product.price}</span>`;
   }
   
   document.getElementById('productDescription').textContent = product.description;
@@ -71,26 +73,6 @@ function setupProductInteractions() {
     });
   });
   
-  // Set up quantity selector
-  const decreaseBtn = document.getElementById('decreaseQuantity');
-  const increaseBtn = document.getElementById('increaseQuantity');
-  const quantityValue = document.getElementById('quantityValue');
-  let quantity = 1;
-  
-  // decerase qantity and update the value in the end
-  decreaseBtn.addEventListener('click', () => {
-    if (quantity > 1) {
-      quantity--;
-      quantityValue.textContent = quantity;
-    }
-  });
-  
-  // increase qantity and update the value in the end
-  increaseBtn.addEventListener('click', () => {
-    quantity++;
-    quantityValue.textContent = quantity;
-  });
-  
   // Set up add to cart button
   const addToCartBtn = document.querySelector('.add-to-cart-button');
   addToCartBtn.addEventListener('click', () => {
@@ -116,6 +98,30 @@ function setupProductInteractions() {
     saveToCart(selectedProductInfo);
     
     alert('Added to cart!');
+  });
+}
+
+function setupQuantitySelector() {
+  document.addEventListener('DOMContentLoaded', function() {
+    const decreaseBtn = document.getElementById('decreaseQuantity');
+    const increaseBtn = document.getElementById('increaseQuantity');
+    const quantityValue = document.getElementById('quantityValue');
+    
+    if (decreaseBtn && increaseBtn && quantityValue) {
+      let quantity = parseInt(quantityValue.textContent) || 1;
+      
+      decreaseBtn.addEventListener('click', function() {
+        if (quantity > 1) {
+          quantity--;
+          quantityValue.textContent = quantity;
+        }
+      });
+      
+      increaseBtn.addEventListener('click', function() {
+        quantity++;
+        quantityValue.textContent = quantity;
+      });
+    }
   });
 }
 
@@ -169,9 +175,9 @@ function displayRelatedProducts(currentProduct) {
 }
 
 function RenderDropDown(){
-   document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     // Get all section headers in the product details
-    const sections = document.querySelectorAll('.product-dropdown-deatils > div > h3');
+    const sections = document.querySelectorAll('.product-dropdown-details > div > h3');
     
     // Add click event listener to each header
     sections.forEach(header => {
@@ -181,5 +187,31 @@ function RenderDropDown(){
         parent.classList.toggle('active');
       });
     });
+  });
+}
+
+function setupSizeGuideLink() {
+  document.addEventListener('DOMContentLoaded', function() {
+    const sizeGuideLink = document.querySelector('.size-guide-link');
+    
+    if (sizeGuideLink) {
+      sizeGuideLink.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        
+        // Find the size guide div (parent element)
+        const sizeGuideDiv = document.querySelector('.product-dropdown-details .size-guide');
+        
+        if (sizeGuideDiv) {
+          // Add active class to the size guide div (this is the key fix)
+          sizeGuideDiv.classList.add('active');
+          
+          // Scroll to the size guide section
+          sizeGuideDiv.scrollIntoView({ behavior: 'smooth' });
+          
+        } else {
+          console.error("Size guide div not found");
+        }
+      });
+    }
   });
 }

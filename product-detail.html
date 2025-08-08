@@ -58,38 +58,49 @@
                     <p class="model"></p>
                 </div>
 
-                <div class="product-dropdown-deatils">
+                <div class="product-dropdown-details">
                         <div class="size-guide">
                             <h3>Size Guide</h3>
                             <p>Use the size guide below to find your perfect fit.</p>
                             <table class="size-table">
                                 <thead>
                                     <tr>
-                                        <th>Size</th>
-                                        <th>Chest (cm)</th>
-                                        <th>Length (cm)</th>
+                                        <th></th>
+                                        <th>XS</th>
+                                        <th>S</th>
+                                        <th>M</th>
+                                        <th>L</th>
+                                        <th>XL</th>
+                                        <th>XXL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>S</td>
-                                        <td>92</td>
-                                        <td>68</td>
+                                        <td>1.Length</td>
+                                        <td>26.25</td>
+                                        <td>27.50</td>
+                                        <td>28.50</td>
+                                        <td>29.50</td>
+                                        <td>30.50</td>
+                                        <td>31.50</td>
                                     </tr>
                                     <tr>
-                                        <td>M</td>
-                                        <td>96</td>
-                                        <td>70</td>
+                                        <td>2.Width</td>
+                                        <td>18.00</td>
+                                        <td>19.50</td>
+                                        <td>21.00</td>
+                                        <td>22.50</td>
+                                        <td>24.00</td>
+                                        <td>25.50</td>
                                     </tr>
                                     <tr>
-                                        <td>L</td>
-                                        <td>100</td>
-                                        <td>72</td>
-                                    </tr>
-                                    <tr>
-                                        <td>XL</td>
-                                        <td>104</td>
-                                        <td>74</td>
+                                        <td>3.Sleeve</td>
+                                        <td>8.00</td>
+                                        <td>8.50</td>
+                                        <td>9.00</td>
+                                        <td>9.50</td>
+                                        <td>10.00</td>
+                                        <td>10.50</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -103,10 +114,10 @@
 
                         <div class="FAQ">
                             <h3>Frequently Asked Questions</h3>
-                            <p><strong>Q: How do I care for my t-shirt?</strong></p>
+                            <p class="questions__faq"><strong>Q: How do I care for my t-shirt?</strong></p>
                             <p>A: Machine wash cold with like colors, tumble dry low, and iron on low heat if needed.</p>
                             
-                            <p><strong>Q: Can I return or exchange this item?</strong></p>
+                            <p class="questions__faq"><strong>Q: Can I return or exchange this item?</strong></p>
                             <p>A: Yes, we accept returns and exchanges within 30 days of purchase. Please refer to our <a href="returns.html">Return Policy</a> for more details.</p>
                         </div>
 
@@ -121,7 +132,7 @@
             <div class="buttons__container">
                 <div class="colors__container">
                     <h3>Colors</h3>
-                    <input type="text" id="colorBlack" name="color" value="Request your color">
+                    <input type="text" id="colorBlack" name="color" placeholder="Request your color">
                 </div>
 
                 <div class="product-buttons-container">
@@ -134,15 +145,18 @@
                             <button class="size-button" id="sizeL">L</button>
                             <button class="size-button" id="sizeXL">XL</button>
                             <button class="size-button" id="sizeXXL">XXL</button>
+                            <a class="size-guide-link" href="#">Size Guide</a>
                         </div>
                     </div>
                     <div class="add-to-cart__container">
-                        <button class="add-to-cart-button">Add to Cart</button>
+                        
                         <div class="quantity-selector">
                             <button class="quantity-button" id="decreaseQuantity">-</button>
                             <span class="quantity-value" id="quantityValue">1</span>
                             <button class="quantity-button" id="increaseQuantity">+</button>
                         </div>
+
+                        <button class="add-to-cart-button">Add to Cart</button>
                     </div>
                 </div>
             </div>  
@@ -152,17 +166,17 @@
         <div class="related-products">
             <div class="collection__preview">
                     <div class="preview__title">
-                        <span class="new-items__title">Related Products</span>
+                        <span class="related-items__title">Related Products</span>
 
-                        <div class="new-items__button__section">
-                            <button class="new-items__button">View all</button>
+                        <div class="related-items__button__section">
+                            <button class="related-items__button">View all</button>
                         </div>
                     </div>
 
                     <div class="preview__gallery">
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
+                        <div class="related-items__collection">
+                            <div class="related-items__image__cover">
+                                <img class="related-items__image" alt="related-items image" src="frontend/images/product-example-2.jpg">
                             </div>
 
                             <h4>NOIR CABLE KNIT-SWEATER</h4>
@@ -170,9 +184,9 @@
                             <h5>$35</h4>
                         </div>
 
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
+                        <div class="related-items__collection">
+                            <div class="related-items__image__cover">
+                                <img class="related-items__image" alt="Nerelated-items image" src="frontend/images/product-example.jpg">
                             </div>
 
                             <h4>NOIR CABLE KNIT-SWEATER</h4>
@@ -180,9 +194,9 @@
                             <h5>$35</h4>
                         </div>
 
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
+                        <div class="related-items__collection">
+                            <div class="related-items__image__cover">
+                                <img class="related-items__image" alt="related-items image" src="frontend/images/product-example-2.jpg">
                             </div>
 
                             <h4>NOIR CABLE KNIT-SWEATER</h4>
@@ -190,9 +204,9 @@
                             <h5>$35</h4>
                         </div>
 
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
+                        <div class="related-items__collection">
+                            <div class="related-items__image__cover">
+                                <img class="related-items__image" alt="related-items image" src="frontend/images/product-example.jpg">
                             </div>
 
                             <h4>NOIR CABLE KNIT-SWEATER</h4>
