@@ -6,7 +6,7 @@
         
         <link rel="shortcut icon" type="fronend/image/x-icon" href="frontend/images/yarn-logo-no-background-big.png" />
         <title>KNIT</title>
-        <link rel="stylesheet" href="frontend/styles/pages/about.css" />
+        <link rel="stylesheet" href="frontend/styles/pages/cart.css" />
 
 
         <!-- Inter font -->
@@ -45,6 +45,61 @@
 
             <div class="home__link">
                 <p><a class="home-link" href="index.html">HOME</a> / ABOUT</p>
+            </div>
+
+
+            <div class="cart-page__container">
+                <div class="left__container">
+                    <div class="user-contact__container">
+                        <h3 class="user-contact__title">Contact</h3>
+                        <div class="user-contact__name">
+                            <input type="text" class="user-contact__input" placeholder="First Name">
+                            <input type="text" class="user-contact__input" placeholder="Last Name">
+                        </div>
+                        
+                        <input type="email" class="user-contact__input" placeholder="Email">
+                        <input type="text" class="user-contact__input" placeholder="Phone number">
+                    </div>
+
+                
+                    <div class="delivery__container">
+                        <div class="delivery__method delivery">
+                            <input type="radio" class="delivery__radio" name="delivery" id="delivery1" checked>
+                            <label for="delivery1" class="delivery__label">Delivery</label>
+                        </div>
+                        <div class="delivery__method pickup">
+                            <input type="radio" class="delivery__radio" name="delivery" id="delivery2">
+                            <label for="delivery2" class="delivery__label">Pickup</label>
+                        </div>
+                        
+                        <div class="delivery__details">
+                            <input type="text" class="delivery__input" placeholder="Country">
+                            <input type="text" class="delivery__input" placeholder="City">
+                            <input type="text" class="delivery__input" placeholder="Adress">
+                            <input type="text" class="delivery__input" placeholder="Apartment, suite, etc. (optional)">
+                            
+                        </div>
+
+                        <!-- <div class="pickup__details">
+                            <h4 class="pickup__description">We will contact you through your Whatsapp for the Pickup details</h4>
+                        </div> -->
+                    </div>
+
+                    <button class="make-order-button">Make Order</button>
+                </div>
+                
+                <div clas="cart__container">
+                    <div class="cart__items">
+                        <div class="cart__item">
+                            <img class="cart-item__image" alt="cart-item image" src="frontend/images/product-example.jpg">
+                            <div class="cart__item__details">
+                                <h4 class="cart__item__name">Product Name</h4>
+                                <p class="cart__item__description">Product Description</p>
+                            </div>
+                            <p class="cart__item__price">$19.99</p>  
+                        </div>  
+                    </div>
+                </div>
             </div>
 
 
