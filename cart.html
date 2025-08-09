@@ -47,60 +47,99 @@
                 <p><a class="home-link" href="index.html">HOME</a> / ABOUT</p>
             </div>
 
-
             <div class="cart-page__container">
-                <div class="left__container">
-                    <div class="user-contact__container">
-                        <h3 class="user-contact__title">Contact</h3>
-                        <div class="user-contact__name">
-                            <input type="text" class="user-contact__input" placeholder="First Name">
-                            <input type="text" class="user-contact__input" placeholder="Last Name">
-                        </div>
-                        
-                        <input type="email" class="user-contact__input" placeholder="Email">
-                        <input type="text" class="user-contact__input" placeholder="Phone number">
-                    </div>
+    <div class="left__container">
+        <div class="user-contact__container">
+            <h3 class="user-contact__title">Contact</h3>
+            <div class="user-contact__name">
+                <input type="text" class="user-contact__input" placeholder="First Name">
+                <input type="text" class="user-contact__input" placeholder="Last Name">
+            </div>
+            
+            <input type="email" class="user-contact__input" placeholder="Email">
+            <input type="text" class="user-contact__input" placeholder="Phone number">
+        </div>
 
-                
-                    <div class="delivery__container">
-                        <div class="delivery__method delivery">
-                            <input type="radio" class="delivery__radio" name="delivery" id="delivery1" checked>
-                            <label for="delivery1" class="delivery__label">Delivery</label>
-                        </div>
-                        <div class="delivery__method pickup">
-                            <input type="radio" class="delivery__radio" name="delivery" id="delivery2">
-                            <label for="delivery2" class="delivery__label">Pickup</label>
-                        </div>
-                        
-                        <div class="delivery__details">
-                            <input type="text" class="delivery__input" placeholder="Country">
-                            <input type="text" class="delivery__input" placeholder="City">
-                            <input type="text" class="delivery__input" placeholder="Adress">
-                            <input type="text" class="delivery__input" placeholder="Apartment, suite, etc. (optional)">
-                            
-                        </div>
-
-                        <!-- <div class="pickup__details">
-                            <h4 class="pickup__description">We will contact you through your Whatsapp for the Pickup details</h4>
-                        </div> -->
-                    </div>
-
-                    <button class="make-order-button">Make Order</button>
+        <div class="delivery__container">
+            <h3 class="user-contact__title">Shipping</h3>
+            <div class="delivery__methods">
+                <div class="delivery__method delivery selected" id="deliveryMethodContainer1">
+                    <input type="radio" class="delivery__radio" name="delivery" id="delivery1" checked>
+                    <label for="delivery1" class="delivery__label">Delivery</label>
                 </div>
-                
-                <div clas="cart__container">
-                    <div class="cart__items">
-                        <div class="cart__item">
-                            <img class="cart-item__image" alt="cart-item image" src="frontend/images/product-example.jpg">
-                            <div class="cart__item__details">
-                                <h4 class="cart__item__name">Product Name</h4>
-                                <p class="cart__item__description">Product Description</p>
-                            </div>
-                            <p class="cart__item__price">$19.99</p>  
-                        </div>  
-                    </div>
+                <div class="delivery__method pickup" id="deliveryMethodContainer2">
+                    <input type="radio" class="delivery__radio" name="delivery" id="delivery2">
+                    <label for="delivery2" class="delivery__label">Pickup</label>
                 </div>
             </div>
+            
+            <div class="delivery__details">
+                <input type="text" class="delivery__input" placeholder="Enter your address">
+                <input type="text" class="delivery__input" placeholder="Enter your city">
+                <input type="text" class="delivery__input" placeholder="Enter your postal code">
+                <input type="text" class="delivery__input" placeholder="Enter your country">
+            </div>
+
+            <div class="pickup__details">
+                <h4 class="pickup__description">We will contact you through your WhatsApp for the pickup details</h4>
+            </div>
+            
+            <button class="make-order-button">COMPLETE ORDER</button>
+        </div>
+    </div>
+    
+    <div class="cart__container">
+        <h3 class="cart__title">Your Cart</h3>
+        <div class="cart__items">
+            <div class="cart__item">
+                <img src="frontend/images/product-example.jpg" alt="Product Image" class="cart-item__image">
+                <div class="cart__item__details">
+                    <h4 class="cart__item__name">Knitted Sweater</h4>
+                    <p class="cart__item__description">Handcrafted wool blend sweater with cable knit pattern</p>
+                    <div class="cart__item__options">
+                        <span class="cart__item__size">Size: M</span>
+                        <span class="cart__item__quantity">Qty: 1</span>
+                    </div>
+                    <div class="cart__item__actions">
+                        <span class="cart__item__remove">Remove</span>
+                    </div>
+                </div>
+                <span class="cart__item__price">$59.99</span>
+            </div>
+            
+            <div class="cart__item">
+                <img src="frontend/images/product-example.jpg" alt="Product Image" class="cart-item__image">
+                <div class="cart__item__details">
+                    <h4 class="cart__item__name">Knitted Beanie</h4>
+                    <p class="cart__item__description">Soft merino wool beanie with ribbed texture</p>
+                    <div class="cart__item__options">
+                        <span class="cart__item__size">Size: One Size</span>
+                        <span class="cart__item__quantity">Qty: 2</span>
+                    </div>
+                    <div class="cart__item__actions">
+                        <span class="cart__item__remove">Remove</span>
+                    </div>
+                </div>
+                <span class="cart__item__price">$29.99</span>
+            </div>
+        </div>
+        
+        <div class="cart__summary">
+            <div class="cart__summary__row">
+                <span>Subtotal</span>
+                <span>$89.98</span>
+            </div>
+            <div class="cart__summary__row">
+                <span>Shipping</span>
+                <span>$5.00</span>
+            </div>
+            <div class="cart__summary__total">
+                <span>Total</span>
+                <span>$94.98</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 
             <footer class="footer">
