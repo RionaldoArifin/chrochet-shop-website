@@ -1,159 +1,159 @@
 <!DOCTYPE html>
 <html>  
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="shortcut icon" type="fronend/image/x-icon" href="frontend/images/yarn-logo-no-background-big.png" />
-        <title>KNIT</title>
-        <link rel="stylesheet" href="frontend/styles/pages/account.css" />
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" type="fronend/image/x-icon" href="frontend/images/yarn-logo-no-background-big.png" />
+    <title>KNIT</title>
+    <link rel="stylesheet" href="frontend/styles/pages/account.css" />
 
 
-        <!-- Inter font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Radley:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Radley:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-        <!-- Instagram Logo -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+    <!-- Instagram Logo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
-        <body>
-            <nav class="nav">
-                <div class="nav__links__left">
-                    <a class=nav__link href="shop.html">Shop</a>
-                    <a class=nav__link href="about.html">About</a>
-                    <a class=nav__link href="contact.html">Contact Us</a>
-                </div>
+  <body>
+    <nav class="nav">
+        <div class="nav__links__left">
+            <a class=nav__link href="shop.html">Shop</a>
+            <a class=nav__link href="about.html">About</a>
+            <a class=nav__link href="contact.html">Contact Us</a>
+        </div>
 
-                <a class="nav__logo" href="index.html" >KNIT</a>
+        <a class="nav__logo" href="index.html" >KNIT</a>
 
-                <div class="nav__links__right">
-                    <a class="nav__link search_bar">Search</a>
-                    <a class=nav__link href="account.html">Account</a>
-                    <a class=nav__link href="cart.html">Cart</a>
-                </div>
-            </nav>
+        <div class="nav__links__right">
+            <a class="nav__link search_bar">Search</a>
+            <a class=nav__link href="account.html">Account</a>
+            <a class=nav__link href="cart.html">Cart</a>
+        </div>
+    </nav>
 
-            <div class="search-container" id="searchContainer">
-              <form class="search-form">
-                <input type="text" class="search-input" placeholder="Search for products...">
-                <button type="button" class="search-close" id="searchClose">✕</button>
-              </form>
+    <div class="search-container" id="searchContainer">
+      <form class="search-form">
+        <input type="text" class="search-input" placeholder="Search for products...">
+        <button type="button" class="search-close" id="searchClose">✕</button>
+      </form>
+    </div>
+
+    <div class="home__link">
+        <p><a class="home-link" href="index.html">HOME</a> / ACCOUNT</p>
+    </div>
+
+    <div class="account-section">
+        <h2>Account Access</h2>
+        <div class="account-options">
+            <div class="account-login">
+                <h3>Already have an account?</h3>
+                <button class="btn-login">Log In</button>
             </div>
-
-            <div class="home__link">
-                <p><a class="home-link" href="index.html">HOME</a> / ACCOUNT</p>
+            <div class="account-divider">
+                <span>or</span>
             </div>
-
-            <div class="account-section">
-                <h2>Account Access</h2>
-                <div class="account-options">
-                    <div class="account-login">
-                        <h3>Already have an account?</h3>
-                        <button class="btn-login">Log In</button>
-                    </div>
-                    <div class="account-divider">
-                        <span>or</span>
-                    </div>
-                    <div class="account-register">
-                        <h3>New to KNIT?</h3>
-                        <button class="btn-register">Create Account</button>
-                        <button class="btn-google">
-                            <i class="fa fa-google"></i>
-                            <span>Continue with Google</span>
-                        </button>
-                    </div>
-                </div>
+            <div class="account-register">
+                <h3>New to KNIT?</h3>
+                <button class="btn-register">Create Account</button>
+                <button class="btn-google">
+                    <i class="fa fa-google"></i>
+                    <span>Continue with Google</span>
+                </button>
             </div>
+        </div>
+    </div>
 
-            <!-- Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h3>Log In</h3>
-    <form class="auth-form">
-      <div class="form-group">
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" required>
+      <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Log In</h3>
+        <form class="auth-form">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required>
+          </div>
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox"> Remember me
+            </label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn-submit">Log In</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="login-password">Password</label>
-        <input type="password" id="login-password" required>
-      </div>
-      <div class="form-options">
-        <label class="remember-me">
-          <input type="checkbox"> Remember me
-        </label>
-        <a href="#" class="forgot-password">Forgot password?</a>
-      </div>
-      <button type="submit" class="btn-submit">Log In</button>
-    </form>
-  </div>
-</div>
+    </div>
 
-<!-- Register Modal -->
-<div id="registerModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h3>Create Account</h3>
-    <form class="auth-form">
-      <div class="form-group">
-        <label for="register-name">Full Name</label>
-        <input type="text" id="register-name" required>
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Create Account</h3>
+        <form class="auth-form">
+          <div class="form-group">
+            <label for="register-name">Full Name</label>
+            <input type="text" id="register-name" required>
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" required>
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" required>
+          </div>
+          <div class="form-group">
+            <label for="register-password-confirm">Confirm Password</label>
+            <input type="password" id="register-password-confirm" required>
+          </div>
+          <div class="form-terms">
+            <label class="terms-checkbox">
+              <input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+          <button type="submit" class="btn-submit">Create Account</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="register-email">Email</label>
-        <input type="email" id="register-email" required>
-      </div>
-      <div class="form-group">
-        <label for="register-password">Password</label>
-        <input type="password" id="register-password" required>
-      </div>
-      <div class="form-group">
-        <label for="register-password-confirm">Confirm Password</label>
-        <input type="password" id="register-password-confirm" required>
-      </div>
-      <div class="form-terms">
-        <label class="terms-checkbox">
-          <input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-        </label>
-      </div>
-      <button type="submit" class="btn-submit">Create Account</button>
-    </form>
-  </div>
-</div>
+    </div>
 
-            <footer class="footer">
-                <div class="footer__content">
-                    <div class="footer__logo">
-                        <h1 class="logo__name">KNIT</h1>
-                        <p>Knit is a local, handmade knitting and crochet company in Lampung, Indonesia, offering quality modest apparel, accessories, and creative courses for every skill level.</p>
-                        
-                        <h3>Follow us</h3>
-                        <a href="https://www.instagram.com/craft_koe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="fa fa-instagram"> craft_koe</a>
-                        
-                    </div>
-
-                    <div class="footer__links">
-                        <div class="footer__column">
-                            <h4>Information</h4>
-                            <a href="#">Size Guide</a>
-                            <a href="#">Contact Us</a>
-                            <a href="#">About Us</a>
-                        </div>
-                    </div>
-
-                    <div class="footer__bottom">
-                        <p>&copy; 2025 All rights reserved.</p>
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Privacy Policy</a>
-                    </div>
-                </div>
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__logo">
+                <h1 class="logo__name">KNIT</h1>
+                <p>Knit is a local, handmade knitting and crochet company in Lampung, Indonesia, offering quality modest apparel, accessories, and creative courses for every skill level.</p>
                 
-            </footer>
-            <script type="module" src="./backend/scripts/account.js"></script>
-        </body>
-    </head>
+                <h3>Follow us</h3>
+                <a href="https://www.instagram.com/craft_koe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="fa fa-instagram"> craft_koe</a>
+                
+            </div>
+
+            <div class="footer__links">
+                <div class="footer__column">
+                    <h4>Information</h4>
+                    <a href="#">Size Guide</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>&copy; 2025 All rights reserved.</p>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        
+    </footer>
+    <script type="module" src="./backend/scripts/account.js"></script>
+  </body>
+
 </html>

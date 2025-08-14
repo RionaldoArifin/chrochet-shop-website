@@ -8,7 +8,6 @@ export function RenderNavigationBar(){
         const searchContainer = document.getElementById('searchContainer');
 
         // Set initial nav properties
-        nav.style.backgroundColor = '#fffff4';
         nav.style.width = '100%';
         nav.style.transition = 'transform 0.3s ease-in-out';
         nav.style.zIndex = '1000';

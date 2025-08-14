@@ -22,233 +22,201 @@
         <!-- Instagram Logo -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head> 
+
+    <body>
+        <nav class="nav">
+            <div class="nav__links__left">
+                <a class=nav__link href="shop.html">Shop</a>
+                <a class=nav__link href="about.html">About</a>
+                <a class=nav__link href="contact.html">Contact Us</a>
+            </div>
+
+            <a class="nav__logo" href="index.html" >KNIT</a>
+
+            <div class="nav__links__right">
+                <a class="nav__link search_bar">Search</a>
+                <a class=nav__link href="account.html">Account</a>
+                <a class=nav__link href="cart.html">Cart</a>
+            </div>
+        </nav>
+
+        <div class="search-container" id="searchContainer">
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search for products...">
+                <button type="button" class="search-close" id="searchClose">✕</button>
+            </form>
+        </div>
         
-
-        <body>
-            <nav class="nav">
-                <div class="nav__links__left">
-                    <a class=nav__link href="shop.html">Shop</a>
-                    <a class=nav__link href="about.html">About</a>
-                    <a class=nav__link href="contact.html">Contact Us</a>
-                </div>
-
-                <a class="nav__logo" href="index.html" >KNIT</a>
-
-                <div class="nav__links__right">
-                    <a class="nav__link search_bar">Search</a>
-                    <a class=nav__link href="account.html">Account</a>
-                    <a class=nav__link href="cart.html">Cart</a>
-                </div>
-            </nav>
-
-            <div class="search-container" id="searchContainer">
-                <form class="search-form">
-                    <input type="text" class="search-input" placeholder="Search for products...">
-                    <button type="button" class="search-close" id="searchClose">✕</button>
-                </form>
+        <div class="cover">
+            <div class="cover__gallery">
+                <img class="cover__image" alt="Cover image" src="frontend/images/vintage-green-buttoned-long-sleeve-shirt.jpg">
+                <img class="cover__image" alt="Cover image" src="frontend/images/white-sleeveless shirtjpg.jpg">
+                <img class="cover__image" alt="Cover image" src="frontend/images/vintage-green-cropped-shirt.jpg">
+                <img class="cover__image" alt="Cover image" src="frontend/images/red-cropped-outer-shirt.jpg">    
             </div>
             
-            <div class="cover">
-                <div class="cover__gallery">
-                    <img class="cover__image" alt="Cover image" src="frontend/images/vintage-green-buttoned-long-sleeve-shirt.jpg">
-                    <img class="cover__image" alt="Cover image" src="frontend/images/white-sleeveless shirtjpg.jpg">
-                    <img class="cover__image" alt="Cover image" src="frontend/images/vintage-green-cropped-shirt.jpg">
-                    <img class="cover__image" alt="Cover image" src="frontend/images/red-cropped-outer-shirt.jpg">    
-                </div>
-                
-                <div class="cover__description">
-                    <h4>A symphony of yarn and artistry, tailored for distinction. Handmade treasures for your beautiful moments.</h4>
-                    <!-- <h4>A SYMPHONY OF YARN AND ARTISTRY, TAILORED FOR DISTINCTION. HANDMADE TREASURES FOR YOUR BEAUTIFUL MOMENTS.</h4> -->
-                    <!-- <h4>a symphony of yarn and artistry, tailored for distinction. handmade treasures for your beautiful moments.</h4> -->
+            <div class="cover__description">
+                <h4>A symphony of yarn and artistry, tailored for distinction. Handmade treasures for your beautiful moments.</h4>
+                <h5>“woven from many threads — each choice, each moment, adding to the fabric of our story.”</h5>
+            </div>
 
-                    <h5>“woven from many threads — each choice, each moment, adding to the fabric of our story.”</h5>
+            <div class="collection__preview">
+                <div class="preview__title">
+                    <span class="new-items__title">New Items</span>
+
+                    <div class="new-items__button__section">
+                        <button class="new-items__button">View all</button>
+                    </div>
                 </div>
 
-                <div class="collection__preview">
-                    <div class="preview__title">
-                        <span class="new-items__title">New Items</span>
-
-                        <div class="new-items__button__section">
-                            <button class="new-items__button">View all</button>
+                <div class="preview__gallery">
+                    <div class="new-items__collection">
+                        <div class="new-items__image__cover">
+                            <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
                         </div>
+
+                        <h4>NOIR CABLE KNIT-SWEATER</h4>
+                        <h6>Long sleeve knitted sweater</h6>
+                        <h5>$35</h4>
                     </div>
 
-                    <div class="preview__gallery">
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
-                            </div>
-
-                            <h4>NOIR CABLE KNIT-SWEATER</h4>
-                            <h6>Long sleeve knitted sweater</h6>
-                            <h5>$35</h4>
+                    <div class="new-items__collection">
+                        <div class="new-items__image__cover">
+                            <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
                         </div>
 
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
-                            </div>
+                        <h4>NOIR CABLE KNIT-SWEATER</h4>
+                        <h6>Long sleeve knitted sweater</h6>
+                        <h5>$35</h4>
+                    </div>
 
-                            <h4>NOIR CABLE KNIT-SWEATER</h4>
-                            <h6>Long sleeve knitted sweater</h6>
-                            <h5>$35</h4>
+                    <div class="new-items__collection">
+                        <div class="new-items__image__cover">
+                            <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
                         </div>
 
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example-2.jpg">
-                            </div>
+                        <h4>NOIR CABLE KNIT-SWEATER</h4>
+                        <h6>Long sleeve knitted sweater</h6>
+                        <h5>$35</h4>
+                    </div>
 
-                            <h4>NOIR CABLE KNIT-SWEATER</h4>
-                            <h6>Long sleeve knitted sweater</h6>
-                            <h5>$35</h4>
+                    <div class="new-items__collection">
+                        <div class="new-items__image__cover">
+                            <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
                         </div>
 
-                        <div class="new-items__collection">
-                            <div class="new-items__image__cover">
-                                <img class="new-items__image" alt="New-items image" src="frontend/images/product-example.jpg">
+                        <h4>NOIR CABLE KNIT-SWEATER</h4>
+                        <h6>Long sleeve knitted sweater</h6>
+                        <h5>$35</h4>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="course">
+            <div class="course__image">
+                <img class="knitting-course__image4" alt="Knitting Course" src="frontend/images/knitting-course-image3.jpg">
+            </div>
+
+            <div class="signup">
+                <h2>Join Our Crochet & Knitting Course!</h2>
+                <p>
+                    Ready to create something beautiful? Sign up for our hands-on crochet and knitting session!<br>
+                    <strong>1-hour session:</strong> $70 &nbsp; | &nbsp; <strong>2-hour session:</strong> $100<br>
+                    All skill levels welcome.
+                </p>
+                <form>
+                    <div class="signup__inputs">
+                        <div class="signup__left">
+                            <div class="label-input__group">
+                                <label class="signup__label" for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="label-input__group">
+                                <label class="signup__label" for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
                             </div>
 
-                            <h4>NOIR CABLE KNIT-SWEATER</h4>
-                            <h6>Long sleeve knitted sweater</h6>
-                            <h5>$35</h4>
+                            <div class="label-input__group">
+                                <label class="signup__label" for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                                <h6>(We will contact you through Whatsapp)</h6>
+                            </div>
+                            
+                        </div>
+
+                        <div class="signup__right">
+                            <div class="label-input__group">
+                                <label class="signup__label" for="session">Session Length *</label>
+                                <select id="session" name="session" required>
+                                <option value="">--Please choose--</option>
+                                <option value="2-hour">$100 - 2 hours</option>
+                                <option value="1-hour">$70 - 1 hour</option>
+                                </select>
+                                <h6>Each additional hour (above 2 hours): +$50/hour</h6>
+                            </div>
+                            
+                            <div class="label-input__group">
+                                <label class="signup__label" for="preferred-date">Preferred Date/Time</label>
+                                <input type="date" id="preferred-date" name="preferred-date">
+                            </div>
+                            
+                            <div class="label-input__group">
+                                <label class="signup__label" for="experience">Experience Level</label>
+                                <select id="experience" name="experience">
+                                <option value="">--Optional--</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     
-                </div>
-            </div>
-
-            <!-- <div class="production">
-                <h3 class="production__title">OUR PRODUCTION</h3>
-                <div class="stages__cover">
-                    <div class="production__stages">
-                        <img class="production__image" alt="Knitting Image" src="frontend/images/tailor.jpg">
-                        <h4>1. Consultation & Design</h4>
-                        <h5>We begin by understanding your style, preferences, and measurements. Every detail—from color and texture to fit and pattern—is carefully considered to create a truly personalized design.</h5>
+            
+                    <div class="comment__group">
+                        <label for="comments">Any Questions or Comments?</label>
+                        <textarea id="comments" name="comments"></textarea>
                     </div>
+
+                    <button class="signup-button__course" type="submit">SIGN UP NOW</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <h1 class="logo__name">KNIT</h1>
+                    <p>Knit is a local, handmade knitting and crochet company in Lampung, Indonesia, offering quality modest apparel, accessories, and creative courses for every skill level.</p>
                     
-                    <div class="production__stages">
-                        <img class="production__image" alt="Knitting Image" src="frontend/images/handcrafted-knitting.jpg">
-                        <h4>2. Handcrafting & Fitting</h4>
-                        <h5>Your garment is meticulously crafted by hand, stitch by stitch, using premium materials. Throughout the process, we ensure the fit and quality meet your expectations, making adjustments as needed for perfection.</h5>
-                    </div>
-
-                    <div class="production__stages">
-                        <img class="production__image" alt="Knitting Image" src="frontend/images/present-box.jpg">
-                        <h4>3. Finishing & Delivery</h4>
-                        <h5>Every piece is finished with care—seams are secured, embellishments are added, and the final product is carefully checked for quality. Your bespoke apparel is then packaged beautifully and prepared for delivery to your door.</h5>
-                    </div>
-                </div>
-                
-            </div>
- -->
-
-            <div class="course">
-                <div class="course__image">
-                    <img class="knitting-course__image4" alt="Knitting Course" src="frontend/images/knitting-course-image3.jpg">
-                    <!-- <img class="knitting-course__image4" alt="Knitting Course" src="frontend/images/knitting-course-image4.jpg"> -->
-                    <!-- <img class="knitting-course__image4" alt="Knitting Course" src="frontend/images/knitting-course-image5.jpg"> -->
-                    <!-- <img class="knitting-course__image4" alt="Knitting Course" src="frontend/images/knitting-course-image6.jpg"> -->
-                    <!-- <img class="knitting-course__image4" alt="Knitting Course" src="frontend/images/knitting-course-image7.jpg"> -->
+                    <h3>Follow us</h3>
+                    <a href="https://www.instagram.com/craft_koe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="fa fa-instagram"> craft_koe</a>
+                    
                 </div>
 
-                <div class="signup">
-                    <h2>Join Our Crochet & Knitting Course!</h2>
-                    <p>
-                        Ready to create something beautiful? Sign up for our hands-on crochet and knitting session!<br>
-                        <strong>1-hour session:</strong> $70 &nbsp; | &nbsp; <strong>2-hour session:</strong> $100<br>
-                        All skill levels welcome.
-                    </p>
-                    <form>
-                        <div class="signup__inputs">
-                            <div class="signup__left">
-                                <div class="label-input__group">
-                                    <label class="signup__label" for="name">Your Name *</label>
-                                    <input type="text" id="name" name="name" required>
-                                </div>
-                                
-                                <div class="label-input__group">
-                                    <label class="signup__label" for="email">Email Address *</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-
-                                <div class="label-input__group">
-                                    <label class="signup__label" for="phone">Phone Number *</label>
-                                    <input type="tel" id="phone" name="phone" required>
-                                    <h6>(We will contact you through Whatsapp)</h6>
-                                </div>
-                                
-                            </div>
-
-                            <div class="signup__right">
-                                <div class="label-input__group">
-                                    <label class="signup__label" for="session">Session Length *</label>
-                                    <select id="session" name="session" required>
-                                    <option value="">--Please choose--</option>
-                                    <option value="2-hour">$100 - 2 hours</option>
-                                    <option value="1-hour">$70 - 1 hour</option>
-                                    </select>
-                                    <h6>Each additional hour (above 2 hours): +$50/hour</h6>
-                                </div>
-                                
-                                <div class="label-input__group">
-                                    <label class="signup__label" for="preferred-date">Preferred Date/Time</label>
-                                    <input type="date" id="preferred-date" name="preferred-date">
-                                </div>
-                                
-                                <div class="label-input__group">
-                                    <label class="signup__label" for="experience">Experience Level</label>
-                                    <select id="experience" name="experience">
-                                    <option value="">--Optional--</option>
-                                    <option value="beginner">Beginner</option>
-                                    <option value="intermediate">Intermediate</option>
-                                    <option value="advanced">Advanced</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        
-                
-                        <div class="comment__group">
-                            <label for="comments">Any Questions or Comments?</label>
-                            <textarea id="comments" name="comments"></textarea>
-                        </div>
-
-                        <button class="signup-button__course" type="submit">SIGN UP NOW</button>
-                    </form>
-                </div>
-            </div>
-
-            <footer class="footer">
-                <div class="footer__content">
-                    <div class="footer__logo">
-                        <h1 class="logo__name">KNIT</h1>
-                        <p>Knit is a local, handmade knitting and crochet company in Lampung, Indonesia, offering quality modest apparel, accessories, and creative courses for every skill level.</p>
-                        
-                        <h3>Follow us</h3>
-                        <a href="https://www.instagram.com/craft_koe_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="fa fa-instagram"> craft_koe</a>
-                        
-                    </div>
-
-                    <div class="footer__links">
-                        <div class="footer__column">
-                            <h4>Information</h4>
-                            <a href="#">Size Guide</a>
-                            <a href="#">Contact Us</a>
-                            <a href="#">About Us</a>
-                        </div>
-                    </div>
-
-                    <div class="footer__bottom">
-                        <p>&copy; 2025 All rights reserved.</p>
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Privacy Policy</a>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Information</h4>
+                        <a href="#">Size Guide</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">About Us</a>
                     </div>
                 </div>
-                
-            </footer>
 
-            <script type="module" src="backend/scripts/index.js"></script>
-         </body>
-    </head>
+                <div class="footer__bottom">
+                    <p>&copy; 2025 All rights reserved.</p>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>  
+        </footer>
+
+        <script type="module" src="backend/scripts/index.js"></script>
+
+    </body>
+
 </html>

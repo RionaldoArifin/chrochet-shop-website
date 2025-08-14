@@ -10,6 +10,7 @@ const urlParams = new URLSearchParams(window.location.search); // Get the URL fr
 let currentPage = parseInt(urlParams.get('page')) || 1; // Current page number, default to 1 if not specified
 const totalPages = Math.ceil(products.length / productPerPage); // Total number of pages
 
+// For extra safe measures
 // Ensure currentPage is within valid bounds
 if (currentPage < 1 || currentPage > totalPages) {
   currentPage = 1; // Reset to first page if out of bounds
@@ -21,7 +22,7 @@ renderPagination(currentPage, totalPages);
 
 // Function to render the products grid based on the current page
 function renderProductsGrid(page) {
-  const startIndex = (page - 1) * productPerPage; // Where to start in the products array depending how many products are shown in a page
+  const startIndex = (page - 1) * productPerPage; // Strating index of the products array based on how many products are shown in a page
   const endIndex = startIndex + productPerPage; 
   const productsToDisplay = products.slice(startIndex, endIndex);
   
@@ -43,16 +44,16 @@ function renderProductsGrid(page) {
       `;
     }
 
-      productsHTML += `
-        <a class="new-items__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
-            <div class="new-items__image__cover">
-                <img class="new-items__image" alt="New-items image" src="${product.image}">
-            </div>
+    productsHTML += `
+      <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
+          <div class="products__image__cover">
+              <img class="products__image" alt="Products images" src="${product.image}">
+          </div>
 
-            <h4>${product.name}</h4>
-            <h6>${product.description}</h6>
-            ${priceHTML}
-        </a>`; 
+          <h4>${product.name}</h4>
+          <h6>${product.description}</h6>
+          ${priceHTML}
+      </a>`; 
   });
 
   document.querySelector('.js-product-grid').innerHTML = productsHTML;
@@ -70,7 +71,7 @@ function renderPagination(currentPage, totalPages) {
   </a>`;
   // &lt is (<) symbol
 
-  // Generate limited page numbers with ellipses
+  // Generate page numbers
   const pagesToShow = generatePagination(currentPage, totalPages);
   
   pagesToShow.forEach(pageNum => {
@@ -81,10 +82,10 @@ function renderPagination(currentPage, totalPages) {
       <a href="#" class="page-link page-number ${currentPage === pageNum ? 'active' : ''}" data-page="${pageNum}">
         ${pageNum}
       </a>`;
-    } // saves the pagenumber into the dataset.page attribute of the link
+    } // Saves the pagenumber into the dataset.page attribute of the link
   });
 
-  // Next page button
+  // Next page button, disable if last page
   paginationHTML += `
   <a href="#" class="page-link next-page" ${currentPage === totalPages ? 'disabled' : ''}>
     <span>&gt;</span>
@@ -95,8 +96,8 @@ function renderPagination(currentPage, totalPages) {
   // Add event listeners to page numbers
   document.querySelectorAll('.page-number').forEach((link) => {
     link.addEventListener('click', (event) => {
-      event.preventDefault(); // stops the browser from following the link's href attribute, otherwise the browser would try to navigate to "#" (top of page) when clicked
-      const page = parseInt(link.dataset.page); //parseInt() converts this string value to an integer, link.dataset.page is the value of the data-page attribute of the link and (link.) is a variable, can be anything like diu.dataset.page
+      event.preventDefault(); // Stops the browser from following the link's href attribute (#)
+      const page = parseInt(link.dataset.page); // parseInt() converts this string value to an integer, link.dataset.page is the value of the data-page attribute of the link and (link.) is a variable, can be anything like diu.dataset.page
       navigateToPage(page);
     });
   });
@@ -159,11 +160,11 @@ function generatePagination(currentPage, totalPages) {
 function navigateToPage(page) {
   const url = new URL(window.location); // get the current page URL
   url.searchParams.set('page', page); // ?page=X where X is the variable page (the page number)
-  window.history.pushState({}, '', url);
+  window.history.pushState({}, '', url);//  adds a new entry to the browser's history stack, effectively changing the URL in the address bar without triggering a page reload
   
   currentPage = page;
 
-    // Get the product grid element
+  // Get the product grid element
   const productGrid = document.querySelector('.js-product-grid');
   
   // Get the current nav state
@@ -172,16 +173,7 @@ function navigateToPage(page) {
   const navHeight = nav.offsetHeight; // measures the actual height of the navigation bar in pixels
   
   // Calculate the appropriate scroll position
-  let scrollPosition;
-  
-  if (isNavFixed) {
-    // If nav is fixed, account for its height bcs there is placeholder
-    // to prevent layout shifts when the nav is fixed
-    scrollPosition = productGrid.offsetTop - navHeight;
-  } else {
-    // If nav is in normal flow, scroll to the grid's position
-    scrollPosition = productGrid.offsetTop;
-  }
+  let scrollPosition = productGrid.offsetTop - navHeight;
   
   window.scrollTo({
     top: scrollPosition,

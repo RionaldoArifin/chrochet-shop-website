@@ -1,0 +1,9 @@
+Todo List:
+- fix related-products in homepage and make it interactive (copy from product-details page)
+- make google account page interactive
+- make cart page interactive
+- add web animation, make the homepage scroll smoothly at a constant pace, and make the tranformed text active when scrolled, also make the view products jump one by one when in view from left to right
+- fix search bar and make it consistent (based on cart page), fix bug where when scrolled down, but when click search on navbar doesnt show, needs click twice to open
+- fix search bar position in product-details page
+- add cart count when added products
+- // Ensure short description text with limited length for shop page for each product descriptions (<50 letters)

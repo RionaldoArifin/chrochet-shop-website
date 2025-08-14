@@ -49,7 +49,7 @@ body::before {
     justify-content: space-between;
     padding: 2rem 9.2rem;
     border-bottom: 1px solid var(--border-light);
-    /* background-color: var(--third-bg); */
+    background-color: var(--third-bg);
 }
 
 .nav__links__left a, 

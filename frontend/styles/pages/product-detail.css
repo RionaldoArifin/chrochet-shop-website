@@ -50,7 +50,7 @@ body::before {
     justify-content: space-between;
     padding: 2rem 9.2rem;
     border-bottom: 1px solid var(--border-light);
-    /* background-color: var(--third-bg); */
+    background-color: var(--third-bg);
 }
 
 .nav__links__left a, 
@@ -305,6 +305,7 @@ body::before {
     margin-left: 0.1rem;
     padding: 0.1rem 0.5rem;
     background-color: white;
+    color: black;
     /* box-shadow: 0 1px 8px rgba(0,0,0,0.05); */
     /* border: 1px solid var(--secondary-border); */
     border: 1px solid var(--border-light);
@@ -318,8 +319,8 @@ body::before {
     transition: background-color 0.5s ease;
 }
 
-.size-button:focus{
-    background-color: black;
+.size-button.active{
+    background-color: black !important;
     color: white;
     border-color: black;
 }
@@ -514,18 +515,19 @@ body::before {
 
 .related-items__image__cover {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
+    height: 0;
+    padding-bottom: 100%; /* Create a square aspect ratio */
+    position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .related-items__image__cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Cover the entire container */
     display: block;
     border-radius: 10px 10px 0 0;
     transition: transform 0.5s ease;
@@ -551,6 +553,8 @@ body::before {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    color: var(--text-dark);
 }
 
 .related-items__collection:hover {
@@ -585,8 +589,8 @@ body::before {
 }
 
 .related-items__collection h4 {
-    padding: 0.8rem 0rem 0.3rem 1rem;
-    font-size: 1.1rem;
+    padding: 0.6rem 1rem 0.3rem 1rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     margin-top: 0.8rem;
@@ -599,20 +603,47 @@ body::before {
     font-weight: 500;
     color: var(--text-light);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
 }
 
-.related-items__collection h5 {
-    font-size: 1.1rem;
-    padding: 0.8rem 0rem 1rem 1rem;
-    color: var(--text-dark);
+.sale__item__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+    padding: 1rem 0rem 1rem 1rem;
+}
+
+.related-original-price {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-decoration: line-through; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    opacity: 0.8; 
+    margin-top: 0.1rem;
+}
+
+.related-discounted-price {
+    font-size: 1rem;
+    color: var(--sale-color); 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     letter-spacing: 0.07em;
 }
 
-/* Sale tag */
-.related-items__collection:nth-child(3n)::before {
+.related-item-price {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    display: block; /* Ensure it takes its own line */
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+/* Add or update the sale tag */
+.sale__item::before {
     content: "SALE";
     position: absolute;
     top: 10px;
@@ -626,8 +657,6 @@ body::before {
     letter-spacing: 0.1em;
     z-index: 1;
 }
-
-
 
 
 .footer {

@@ -5,8 +5,9 @@
 }
 
 :root {
-    --primary-bg: #fffff4;
+    --primary-bg: rgb(255, 255, 244);
     --secondary-bg: rgb(246, 246, 234);
+    --third-bg: rgb(255, 255, 246);
     --accent-color: #656565;
     --sale-color: #ff3a2e;
     --text-dark: #000000;
@@ -48,6 +49,7 @@ body::before {
     justify-content: space-between;
     padding: 2rem 9.2rem;
     border-bottom: 1px solid var(--border-light);
+    background-color: var(--third-bg);
 }
 
 .nav__links__left a, 
