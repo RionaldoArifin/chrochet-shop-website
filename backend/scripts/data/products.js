@@ -1042,11 +1042,13 @@ export const products = [
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
     image: "frontend/images/products/clotches-product-example.png",
     name: "Fresh White Summer Cardigan",
-    description: "Lightweight cardigan perfect for summer",
+    description: "Lightweight cardigan perfect for summer aowdhawoidawoihdaowihoihdwoihadowhaodhwodiawodahdoiwahdoawhdwaoidwahoiwhdoawhdoawhdoiwh",
     rating: {
       stars: 5,
       count: 2197
     },
+    sale: true,
+    discountedPrice: 199,
     price: 149,
     keywords: [
       "home",

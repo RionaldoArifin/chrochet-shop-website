@@ -168,7 +168,7 @@ function saveToCart(productInfo) {
 }
 
 function displayRelatedProducts(currentProduct) {
-  // Find 3 related products same category
+  // Find 4 related products same category
   let relatedProducts = products
     .filter(p => p.id !== currentProduct.id && p.category === currentProduct.category)
     .slice(0, 4);
@@ -203,8 +203,8 @@ function displayRelatedProducts(currentProduct) {
       
       // Ensure short description text with limited length
       const shortDesc = product.description ? 
-        (product.description.length > 50 ? 
-          product.description.substring(0, 50) + '...' : 
+        (product.description.length > 45 ? 
+          product.description.substring(0, 45) + '...' : 
           product.description) : 
         '';
             

@@ -4,7 +4,7 @@ import {products} from './data/products.js';
 RenderNavigationBar();
 RenderSearchBar();
 
-const productPerPage = 8; // Number of products to display per page
+const productPerPage = 16; // Number of products to display per page
 
 const urlParams = new URLSearchParams(window.location.search); // Get the URL from the browser
 let currentPage = parseInt(urlParams.get('page')) || 1; // Current page number, default to 1 if not specified
@@ -32,6 +32,12 @@ function renderProductsGrid(page) {
     let saleClass = ``; // Default class for products not on sale
     let priceHTML = `<h5 class="item-price">HKD${product.price}</h5>`; // default price with no sale
 
+    const shortDesc = product.description ? 
+        (product.description.length > 45 ? 
+          product.description.substring(0, 45) + '...' : 
+          product.description) : 
+        '';
+
     if (product.sale === true) {
       saleClass = `sale__item`;
 
@@ -51,7 +57,7 @@ function renderProductsGrid(page) {
           </div>
 
           <h4>${product.name}</h4>
-          <h6>${product.description}</h6>
+          <h6>${shortDesc}</h6>
           ${priceHTML}
       </a>`; 
   });
