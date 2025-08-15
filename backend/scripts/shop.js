@@ -1,8 +1,9 @@
-import { RenderNavigationBar, RenderSearchBar } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
 import {products} from './data/products.js';
 
 RenderNavigationBar();
 RenderSearchBar();
+updateCartCount();
 
 const productPerPage = 16; // Number of products to display per page
 

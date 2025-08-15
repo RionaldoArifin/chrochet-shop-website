@@ -86,6 +86,7 @@ export function RenderNavigationBar(){
             
             lastScrollTop = scrollTop; // update lastScrollTop,  ensures that the next scroll event uses the most recent scroll position for accurate comparisons.
         });
+        updateCartCount();
     });
 }
 
@@ -112,3 +113,20 @@ export function RenderSearchBar() {
     });
 }
 
+export function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0); // Updates the total using .reduce (handles decrease/increase)
+  
+  // Update the cart count in the navigation bar
+  const cartCountElement = document.querySelector('.cart-count');
+  if (cartCountElement) {
+    cartCountElement.textContent = cartCount > 0 ? cartCount : '';
+
+    if (cartCount > 0) {
+      cartCountElement.style.display = 'flex'; // Show the cart count
+    }
+    else {
+      cartCountElement.style.display = 'none'; // Hide the cart count if zero
+    }
+  }
+}

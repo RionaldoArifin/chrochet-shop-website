@@ -100,6 +100,34 @@ body::before {
     width: calc(100% - 2rem);
 }
 
+.cart-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: 6px;
+    right: -5px;
+    background-color: black;
+    color: white;
+    font-size: 0.7rem;
+    height: 18px;
+    width: 19px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--helvetica-font);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-count:not(:empty) {
+    opacity: 1;
+    transform: scale(1);
+}
+
 .nav__logo {    
     position: center;
     text-decoration: none;

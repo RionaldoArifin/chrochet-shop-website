@@ -1,4 +1,4 @@
-import { RenderNavigationBar, RenderSearchBar } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
 import { products } from './data/products.js';
 
 RenderNavigationBar();
@@ -269,22 +269,4 @@ function setupSizeGuideLink() {
       sizeGuideDiv.classList.add('active');
     });
   };
-}
-
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartCount = cart.reduce((total, item) => total + item.quantity, 0); // Updates the total using .reduce (handles decrease/increase)
-  
-  // Update the cart count in the navigation bar
-  const cartCountElement = document.querySelector('.cart-count');
-  if (cartCountElement) {
-    cartCountElement.textContent = cartCount;
-
-    if (cartCount > 0) {
-      cartCountElement.style.display = 'block'; // Show the cart count
-    }
-    else {
-      cartCountElement.style.display = 'none'; // Hide the cart count if zero
-    }
-  }
 }

@@ -1,9 +1,10 @@
 import { products } from "./data/products.js";
-import { RenderNavigationBar, RenderSearchBar } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
 
 RenderNavigationBar();
 RenderSearchBar();
 displayNewProducts();
+updateCartCount();
 
 function displayNewProducts() {
   // Find 4 new products
