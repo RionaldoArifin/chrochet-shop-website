@@ -189,16 +189,19 @@ function displayRelatedProducts(currentProduct) {
     relatedHTML = '<p>No related products found.</p>';
   } else {
     relatedProducts.forEach(product => {
-      let priceDisplay = '';
+      let saleClass = ``;
+      let priceDisplay = `<h5 class="related-item-price">HKD${product.price}</h5>`; // default price with no sale
       
       if (product.sale) {
+        saleClass = `sale__item`;
+
+        // if on sale, change the priceDisplay to show original and discounted price
         priceDisplay = `
           <div class="sale__item__price">
-            <span class="related-original-price">HKD${product.price}</span>
-            <span class="related-discounted-price">HKD${product.discountedPrice}</span>
-          </div>`;
-      } else {
-        priceDisplay = `<span class="related-item-price">HKD${product.price}</span>`;
+            <h5 class="related-original-price">HKD${product.price}</h5>
+            <h5 class="related-discounted-price">HKD${product.discountedPrice}</h5>
+          </div>
+        `;
       }
       
       // Ensure short description text with limited length
@@ -211,7 +214,7 @@ function displayRelatedProducts(currentProduct) {
       relatedHTML += `
         <div class="related-items__collection ${product.sale ? ' sale__item' : ''}">
           <div class="related-items__image__cover">
-            <a href="product.html?id=${product.id}">
+            <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
               <img class="related-items__image" alt="${product.name}" src="${product.image}">
             </a>
           </div>

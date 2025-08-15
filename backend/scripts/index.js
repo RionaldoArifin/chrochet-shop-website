@@ -15,17 +15,21 @@ function displayNewProducts() {
     newHTML = '<p>No new products found.</p>';
   } else {
     newProducts.forEach(product => {
-      let priceDisplay = '';
+      let saleClass = ``;
+      let priceDisplay = `<h5 class="new-item-price">HKD${product.price}</h5>`; // default price with no sale
       
       if (product.sale) {
+        saleClass = `sale__item`;
+
+        // if on sale, change the priceDisplay to show original and discounted price
         priceDisplay = `
           <div class="sale__item__price">
-            <span class="new-original-price">HKD${product.price}</span>
-            <span class="new-discounted-price">HKD${product.discountedPrice}</span>
-          </div>`;
-      } else {
-        priceDisplay = `<span class="new-item-price">HKD${product.price}</span>`;
+            <h5 class="new-original-price">HKD${product.price}</h5>
+            <h5 class="new-discounted-price">HKD${product.discountedPrice}</h5>
+          </div>
+        `;
       }
+
       
       // Ensure short description text with limited length
       const shortDesc = product.description ? 
@@ -37,7 +41,7 @@ function displayNewProducts() {
       newHTML += `
         <div class="new-items__collection ${product.sale ? ' sale__item' : ''}">
           <div class="new-items__image__cover">
-            <a href="product.html?id=${product.id}">
+            <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
               <img class="new-items__image" alt="${product.name}" src="${product.image}">
             </a>
           </div>
