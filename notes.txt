@@ -1,6 +1,4 @@
 Todo List:
-- fix search bar and make it consistent (based on cart page), fix bug where when scrolled down, but when click search on navbar doesnt show, needs click twice to open
-- fix search bar position in product-details page
 - add cart count when added products
 - make sorting system interactive on the shop page (Sort By button)
 - make the signup course button interactive (save and send to email)

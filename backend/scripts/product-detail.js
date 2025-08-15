@@ -1,11 +1,12 @@
 import { RenderNavigationBar, RenderSearchBar } from "./utils/knit.js";
 import { products } from './data/products.js';
 
+RenderNavigationBar();
+RenderSearchBar();
+
 document.addEventListener('DOMContentLoaded', initializePage);
 
 function initializePage(){
-  RenderNavigationBar();
-  RenderSearchBar();
   RenderDropDown();
   setupSizeGuideLink();
   setupQuantitySelector();
