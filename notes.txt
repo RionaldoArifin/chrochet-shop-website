@@ -6,3 +6,5 @@ Todo List:
 - fix search bar position in product-details page
 - add cart count when added products
 - make sorting system interactive on the shop page (Sort By button)
+- make the signup course button interactive (save and send to email)
+- make checkout button interactive (save and send to email)
