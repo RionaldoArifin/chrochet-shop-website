@@ -1,7 +1,10 @@
 Todo List:
-- add cart count when added products
-- make sorting system interactive on the shop page (Sort By button)
+- make filter system on shop page and make it interactive
+- set standardized category in products.js, and add more products
+- make the search bar interactive
 - make the signup course button interactive (save and send to email)
 - make google account page interactive
 - make cart page interactive, checkout button interactive (save and send to email)
 - add web animation, make the homepage scroll smoothly at a constant pace, and make the tranformed text active when scrolled, also make the view products jump one by one when in view from left to right
+- fix the sizing adjustment on different screen sizes
+- fix css style from 80% view to 100%

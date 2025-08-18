@@ -1,5 +1,5 @@
 import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
-import {products} from './data/products.js';
+import { products } from './data/products.js';
 
 RenderNavigationBar();
 RenderSearchBar();
@@ -9,7 +9,15 @@ const productPerPage = 16; // Number of products to display per page
 
 const urlParams = new URLSearchParams(window.location.search); // Get the URL from the browser
 let currentPage = parseInt(urlParams.get('page')) || 1; // Current page number, default to 1 if not specified
-const totalPages = Math.ceil(products.length / productPerPage); // Total number of pages
+let currentSort = urlParams.get('sort') || 'default'; // Get sort parameter from URL or use default
+let currentCategory = urlParams.get('category') || 'all'; // Get category parameter from URL or use all
+let filteredProducts = [...products]; // Start with all products
+
+// Apply filtering and sorting
+filterByCategory(currentCategory);
+applySorting(currentSort);
+
+const totalPages = Math.ceil(filteredProducts.length / productPerPage); // Total number of pages
 
 // For extra safe measures
 // Ensure currentPage is within valid bounds
@@ -19,13 +27,91 @@ if (currentPage < 1 || currentPage > totalPages) {
 
 renderProductsGrid(currentPage);
 renderPagination(currentPage, totalPages);
+setupSortingEvents();
 
+// Function to filter products by category
+function filterByCategory(category) {
+  if (category === 'all') {
+    filteredProducts = [...products];
+  } else {
+    filteredProducts = products.filter(p => p.category === category);
+  }
+  
+  const totalPages = Math.ceil(filteredProducts.length / productPerPage);
+  return totalPages;
+}
+
+// Function to apply sorting to the filteredProducts array
+function applySorting(sortType) {
+  switch(sortType) {
+    case 'price-asc':
+      filteredProducts.sort((a, b) => {
+        const priceA = a.sale ? a.discountedPrice : a.price;
+        const priceB = b.sale ? b.discountedPrice : b.price;
+        return priceA - priceB;
+      });
+      break;
+    case 'price-desc':
+      filteredProducts.sort((a, b) => {
+        const priceA = a.sale ? a.discountedPrice : a.price;
+        const priceB = b.sale ? b.discountedPrice : b.price;
+        return priceB - priceA;
+      });
+      break;
+    case 'latest':
+      // Sort by ID assuming newer products have higher IDs
+      filteredProducts.sort((a, b) => b.id - a.id);
+      break;
+    case 'best-selling':
+      // For demo purposes, we'll just randomize the order
+      // In a real app, you'd sort by a popularity or sales metric
+      filteredProducts.sort(() => Math.random() - 0.5);
+      break;
+    default:
+      // Default sorting (no change)
+      break;
+  }
+  
+  // Update the select element to reflect current sort
+  const sortSelect = document.querySelector('.sort-item-selection');
+  if (sortSelect) {
+    sortSelect.value = sortType;
+  }
+}
+
+// Function to set up sorting event listeners
+function setupSortingEvents() {
+  const sortSelect = document.querySelector('.sort-item-selection');
+  
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function() {
+      const sortType = this.value;
+      
+      // Update URL with the sort parameter
+      const url = new URL(window.location);
+      url.searchParams.set('sort', sortType);
+      url.searchParams.set('page', 1); // Reset to page 1 when sorting changes
+      window.history.pushState({}, '', url); // Reset the page
+      
+      // Apply the sorting
+      currentSort = sortType;
+      applySorting(sortType);
+      
+      // Reset to page 1 and update display
+      currentPage = 1;
+      const totalPages = Math.ceil(filteredProducts.length / productPerPage);
+      
+      renderProductsGrid(currentPage);
+      renderPagination(currentPage, totalPages);
+    });
+  }
+}
 
 // Function to render the products grid based on the current page
 function renderProductsGrid(page) {
-  const startIndex = (page - 1) * productPerPage; // Strating index of the products array based on how many products are shown in a page
+  const startIndex = (page - 1) * productPerPage; // Starting index of the products array based on how many products are shown in a page
   const endIndex = startIndex + productPerPage; 
-  const productsToDisplay = products.slice(startIndex, endIndex);
+  const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
   
   let productsHTML = '';
 
@@ -65,7 +151,6 @@ function renderProductsGrid(page) {
 
   document.querySelector('.js-product-grid').innerHTML = productsHTML;
 }
-
 
 // Function to render pagination links
 function renderPagination(currentPage, totalPages) {
@@ -167,6 +252,16 @@ function generatePagination(currentPage, totalPages) {
 function navigateToPage(page) {
   const url = new URL(window.location); // get the current page URL
   url.searchParams.set('page', page); // ?page=X where X is the variable page (the page number)
+  
+  // Preserve sorting and category parameters
+  if (currentSort !== 'default') {
+    url.searchParams.set('sort', currentSort);
+  }
+  
+  if (currentCategory !== 'all') {
+    url.searchParams.set('category', currentCategory);
+  }
+  
   window.history.pushState({}, '', url);//  adds a new entry to the browser's history stack, effectively changing the URL in the address bar without triggering a page reload
   
   currentPage = page;
@@ -176,7 +271,6 @@ function navigateToPage(page) {
   
   // Get the current nav state
   const nav = document.querySelector('.nav');
-  const isNavFixed = nav.style.position === 'fixed';
   const navHeight = nav.offsetHeight; // measures the actual height of the navigation bar in pixels
   
   // Calculate the appropriate scroll position
@@ -187,7 +281,7 @@ function navigateToPage(page) {
     behavior: 'smooth'
   });
 
-  //Re-render the products and paginations
+  // Re-render the products and paginations
   renderProductsGrid(currentPage);
   renderPagination(currentPage, totalPages);
 }
