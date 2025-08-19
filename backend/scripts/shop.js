@@ -25,18 +25,20 @@ if (currentPage < 1 || currentPage > totalPages) {
   currentPage = 1; // Reset to first page if out of bounds
 }
 
+setupSortingEvents();
+setupFilteringEvents();
+
 renderProductsGrid(currentPage);
 renderPagination(currentPage, totalPages);
-setupSortingEvents();
 
 // Function to filter products by category
 function filterByCategory(category) {
   if (category === 'all') {
-    filteredProducts = [...products];
+    filteredProducts = [...products]; // Reset to all products
   } else {
-    filteredProducts = products.filter(p => p.category === category);
+    filteredProducts = products.filter(product => product.category === category);
   }
-  
+  // Calculate new total pages
   const totalPages = Math.ceil(filteredProducts.length / productPerPage);
   return totalPages;
 }
@@ -284,4 +286,36 @@ function navigateToPage(page) {
   // Re-render the products and paginations
   renderProductsGrid(currentPage);
   renderPagination(currentPage, totalPages);
+}
+
+function setupFilteringEvents() {
+  const categorySelect = document.querySelector('.category-filter');
+  
+  if (categorySelect) {
+    // Set initial value based on URL parameter
+    categorySelect.value = currentCategory;
+    
+    categorySelect.addEventListener('change', function() {
+      const category = this.value;
+      
+      // Update URL with the category parameter
+      const url = new URL(window.location);
+      url.searchParams.set('category', category);
+      url.searchParams.set('page', 1); // Reset to page 1 when category changes
+      window.history.pushState({}, '', url);
+      
+      // Apply the filtering
+      currentCategory = category;
+      const newTotalPages = filterByCategory(category);
+      
+      // Apply sorting to filtered results
+      applySorting(currentSort);
+      
+      // Reset to page 1 and update display
+      currentPage = 1;
+      
+      renderProductsGrid(currentPage);
+      renderPagination(currentPage, newTotalPages);
+    });
+  }
 }

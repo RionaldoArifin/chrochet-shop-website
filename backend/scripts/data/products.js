@@ -17,6 +17,7 @@ class Product{
     price;
     sale;
     discountedPrice;
+    category;
 
     constructor(productDetails) {
         this.id = productDetails.id;
@@ -27,6 +28,7 @@ class Product{
         this.price = productDetails.price;
         this.sale = productDetails.sale || false; // Default to false if not provided
         this.discountedPrice = productDetails.discountedPrice || null; // Default to null if not provided
+        this.category = productDetails.category;
     }
 
     getPrice() {
@@ -88,7 +90,8 @@ export const products = [
       "clotches",
     ],
     type: "clothing",
-    sizeChartLink: "frontend/images/clothing-size-chart (1).png"
+    sizeChartLink: "frontend/images/clothing-size-chart (1).png",
+    category: "tops"
   },
   {
     id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
@@ -107,6 +110,7 @@ export const products = [
       "accessories",
       "kids"
     ],
+    category: "accessories"
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -123,7 +127,8 @@ export const products = [
     keywords: [
       "bag",
       "accessories"
-    ]
+    ],
+    category: "accessories"
   },
   {
     id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
@@ -138,7 +143,8 @@ export const products = [
     keywords: [
       "flowers",
       "accessories"
-    ]
+    ],
+    category: "accessories"
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -152,7 +158,8 @@ export const products = [
     price: 19,
     keywords: [
       "accessories"
-    ]
+    ],
+    category: "accessories"
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -184,7 +191,8 @@ export const products = [
       "decoration"
     ],
     type: "clothing",
-    sizeChartLink: "frontend/images/clothing-size-chart (1).png"
+    sizeChartLink: "frontend/images/clothing-size-chart (1).png",
+    category: "tops"
   },
   
   
