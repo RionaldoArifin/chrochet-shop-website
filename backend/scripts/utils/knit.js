@@ -111,6 +111,9 @@ export function RenderSearchBar() {
         searchContainer.style.display = 'none';
         }
     });
+    
+    // Set up search functionality
+    setupSearchBar();
 }
 
 export function updateCartCount() {
@@ -127,6 +130,24 @@ export function updateCartCount() {
     }
     else {
       cartCountElement.style.display = 'none'; // Hide the cart count if zero
+    }
+  }
+}
+
+export function setupSearchBar() {
+  const searchInput = document.querySelector('.search-input');
+  
+  if (searchInput) {
+    // Search input submitted
+    const searchForm = document.querySelector('.search-form');
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        if (searchTerm) {
+          window.location.href = `/shop.html?search=${encodeURIComponent(searchTerm)}`;
+        }
+      });
     }
   }
 }

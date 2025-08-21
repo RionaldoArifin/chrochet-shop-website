@@ -1,4 +1,4 @@
-import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount, setupSearchBar } from "./utils/knit.js";
 import { products } from './data/products.js';
 
 RenderNavigationBar();
@@ -11,13 +11,11 @@ const urlParams = new URLSearchParams(window.location.search); // Get the URL fr
 let currentPage = parseInt(urlParams.get('page')) || 1; // Current page number, default to 1 if not specified
 let currentSort = urlParams.get('sort') || 'default'; // Get sort parameter from URL or use default
 let currentCategory = urlParams.get('category') || 'all'; // Get category parameter from URL or use all
-let filteredProducts = [...products]; // Start with all products
+let searchQuery = urlParams.get('search') || ''; // Get search parameter from URL
+let filteredProducts = [...products]; // Start with all products (make a global copy of the array) 
 
 // Apply filtering and sorting
-filterByCategory(currentCategory);
-applySorting(currentSort);
-
-const totalPages = Math.ceil(filteredProducts.length / productPerPage); // Total number of pages
+const totalPages = filterProducts();
 
 // For extra safe measures
 // Ensure currentPage is within valid bounds
@@ -27,20 +25,49 @@ if (currentPage < 1 || currentPage > totalPages) {
 
 setupSortingEvents();
 setupFilteringEvents();
+updateSearchUI();
 
 renderProductsGrid(currentPage);
 renderPagination(currentPage, totalPages);
 
+// Comprehensive filter function that handles both category and search
+function filterProducts() {
+  // Start with all products
+  filteredProducts = [...products]; // Make a fresh copy of the original array
+  
+  // Apply category filtering
+  if (currentCategory !== 'all') {
+    filteredProducts = filteredProducts.filter(product => product.category === currentCategory);
+  }
+  
+  // Apply search filtering if there's a search query
+  if (searchQuery) {
+    filteredProducts = filteredProducts.filter(product => {
+      // Search matching name and description
+      const nameMatch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const descMatch = product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      // Search in keywords array if it exists
+      const keywordMatch = product.keywords ? 
+        product.keywords.some(keyword => 
+          keyword.toLowerCase().includes(searchQuery.toLowerCase())
+        ) : false;
+      
+      return nameMatch || descMatch || keywordMatch;
+    });
+  }
+  
+  // Apply sorting to filtered results
+  applySorting(currentSort);
+  
+  // Calculate total pages
+  return Math.ceil(filteredProducts.length / productPerPage);
+}
+
 // Function to filter products by category
 function filterByCategory(category) {
-  if (category === 'all') {
-    filteredProducts = [...products]; // Reset to all products
-  } else {
-    filteredProducts = products.filter(product => product.category === category);
-  }
-  // Calculate new total pages
-  const totalPages = Math.ceil(filteredProducts.length / productPerPage);
-  return totalPages;
+  currentCategory = category;
+  return filterProducts();
 }
 
 // Function to apply sorting to the filteredProducts array
@@ -117,39 +144,43 @@ function renderProductsGrid(page) {
   
   let productsHTML = '';
 
-  productsToDisplay.forEach((product) => {
-    let saleClass = ``; // Default class for products not on sale
-    let priceHTML = `<h5 class="item-price">HKD${product.price}</h5>`; // default price with no sale
+  if (productsToDisplay.length === 0) {
+    productsHTML = '<div class="no-products">No products found. Try a different search or category.</div>';
+  } else {
+    productsToDisplay.forEach((product) => {
+      let saleClass = ``; // Default class for products not on sale
+      let priceHTML = `<h5 class="item-price">HKD${product.price}</h5>`; // default price with no sale
 
-    const shortDesc = product.description ? 
-        (product.description.length > 45 ? 
-          product.description.substring(0, 45) + '...' : 
-          product.description) : 
-        '';
+      const shortDesc = product.description ? 
+          (product.description.length > 45 ? 
+            product.description.substring(0, 45) + '...' : 
+            product.description) : 
+          '';
 
-    if (product.sale === true) {
-      saleClass = `sale__item`;
+      if (product.sale === true) {
+        saleClass = `sale__item`;
 
-      // if on sale, change the priceHTML to show original and discounted price
-      priceHTML = `
-        <div class="sale__item__price">
-          <h5 class="original-price">HKD${product.price}</h5>
-          <h5 class="discounted-price">HKD${product.discountedPrice}</h5>
-        </div>
-      `;
-    }
-
-    productsHTML += `
-      <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
-          <div class="products__image__cover">
-              <img class="products__image" alt="Products images" src="${product.image}">
+        // if on sale, change the priceHTML to show original and discounted price
+        priceHTML = `
+          <div class="sale__item__price">
+            <h5 class="original-price">HKD${product.price}</h5>
+            <h5 class="discounted-price">HKD${product.discountedPrice}</h5>
           </div>
+        `;
+      }
 
-          <h4>${product.name}</h4>
-          <h6>${shortDesc}</h6>
-          ${priceHTML}
-      </a>`; 
-  });
+      productsHTML += `
+        <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
+            <div class="products__image__cover">
+                <img class="products__image" alt="Products images" src="${product.image}">
+            </div>
+
+            <h4>${product.name}</h4>
+            <h6>${shortDesc}</h6>
+            ${priceHTML}
+        </a>`; 
+    });
+  }
 
   document.querySelector('.js-product-grid').innerHTML = productsHTML;
 }
@@ -157,6 +188,12 @@ function renderProductsGrid(page) {
 // Function to render pagination links
 function renderPagination(currentPage, totalPages) {
   let paginationHTML = '';
+
+  // Don't show pagination if there are no results
+  if (totalPages === 0) {
+    document.querySelector('.move-pages__link').innerHTML = '';
+    return;
+  }
 
   // Previous page button
   paginationHTML += `
@@ -264,6 +301,10 @@ function navigateToPage(page) {
     url.searchParams.set('category', currentCategory);
   }
   
+  if (searchQuery) {
+    url.searchParams.set('search', searchQuery);
+  }
+  
   window.history.pushState({}, '', url);//  adds a new entry to the browser's history stack, effectively changing the URL in the address bar without triggering a page reload
   
   currentPage = page;
@@ -308,14 +349,34 @@ function setupFilteringEvents() {
       currentCategory = category;
       const newTotalPages = filterByCategory(category);
       
-      // Apply sorting to filtered results
-      applySorting(currentSort);
-      
       // Reset to page 1 and update display
       currentPage = 1;
       
       renderProductsGrid(currentPage);
       renderPagination(currentPage, newTotalPages);
     });
+  }
+}
+
+function updateSearchUI() {
+  // Update the title to show what we're searching for
+  if (searchQuery) {
+    // Update search input value
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+      searchInput.value = searchQuery;
+    }
+    
+    // Update the title to show search results
+    const productsTitle = document.querySelector('.products__title');
+    if (productsTitle) {
+      productsTitle.textContent = `Search: "${searchQuery}"`;
+    }
+    
+    // Show the search bar
+    const searchContainer = document.getElementById('searchContainer');
+    if (searchContainer) {
+      searchContainer.style.display = 'block';
+    }
   }
 }
