@@ -1,5 +1,5 @@
 import { products } from "./data/products.js";
-import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount, shortenText } from "./utils/knit.js";
 
 RenderNavigationBar();
 RenderSearchBar();
@@ -33,11 +33,7 @@ function displayNewProducts() {
 
       
       // Ensure short description text with limited length
-      const shortDesc = product.description ? 
-        (product.description.length > 45 ? 
-          product.description.substring(0, 45) + '...' : 
-          product.description) : 
-        '';
+      const shortDesc = shortenText(product.description, 45);
             
       newHTML += `
         <div class="new-items__collection ${product.sale ? ' sale__item' : ''}">

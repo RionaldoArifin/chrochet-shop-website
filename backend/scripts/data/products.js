@@ -18,6 +18,7 @@ class Product{
     sale;
     discountedPrice;
     category;
+    size;
 
     constructor(productDetails) {
         this.id = productDetails.id;
@@ -29,6 +30,7 @@ class Product{
         this.sale = productDetails.sale || false; // Default to false if not provided
         this.discountedPrice = productDetails.discountedPrice || null; // Default to null if not provided
         this.category = productDetails.category;
+        this.size = productDetails.size;
     }
 
     getPrice() {
@@ -72,7 +74,7 @@ export const products = [
       "sweaters",
       "clotches",
     ],
-    type: "clothing",
+    size: "clothing",
     sizeChartLink: "frontend/images/clothing-size-chart (1).png"
   }, {
     id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
@@ -105,6 +107,7 @@ export const products = [
     price: 49,
     sale: true,
     discountedPrice: 29,
+    size: "none",
     keywords: [
       "dolls",
       "accessories",
@@ -147,7 +150,7 @@ export const products = [
     category: "accessories"
   },
   {
-    id: "54e0eccd-8f36-462b-b68a-8182611d9add",
+    id: "3a7dfb92-5c64-4f3d-8a9e-2c61a1b47bc1",
     image: "frontend/images/products/accessory-product-example.png",
     name: "Butterfly Claw Hair Clip",
     description: "A beautiful butterfly-shaped hair clip",

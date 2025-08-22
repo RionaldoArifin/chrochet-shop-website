@@ -54,12 +54,12 @@
                 <div class="user-contact__container">
                     <h3 class="user-contact__title">Contact</h3>
                     <div class="user-contact__name">
-                        <input type="text" class="user-contact__input" placeholder="First Name">
-                        <input type="text" class="user-contact__input" placeholder="Last Name">
+                        <input type="text" class="user-contact__input firstname-input" placeholder="First Name">
+                        <input type="text" class="user-contact__input lastname-input" placeholder="Last Name">
                     </div>
                     
-                    <input type="email" class="user-contact__input" placeholder="Email">
-                    <input type="text" class="user-contact__input" placeholder="Phone number">
+                    <input type="email" class="user-contact__input email-input" placeholder="Email">
+                    <input type="text" class="user-contact__input phonenumber-input" placeholder="Phone number">
                 </div>
 
                 <div class="delivery__container">
@@ -76,10 +76,10 @@
                     </div>
                     
                     <div class="delivery__details">
-                        <input type="text" class="delivery__input" placeholder="Enter your address">
-                        <input type="text" class="delivery__input" placeholder="Enter your city">
-                        <input type="text" class="delivery__input" placeholder="Enter your postal code">
-                        <input type="text" class="delivery__input" placeholder="Enter your country">
+                        <input type="text" class="delivery__input address-input" placeholder="Enter your address">
+                        <input type="text" class="delivery__input city-input" placeholder="Enter your city">
+                        <input type="text" class="delivery__input postal-input" placeholder="Enter your postal code">
+                        <input type="text" class="delivery__input country-input" placeholder="Enter your country">
                     </div>
 
                     <div class="pickup__details">
@@ -94,38 +94,9 @@
             <div class="cart__container">
                 <h3 class="cart__title">Your Cart</h3>
 
-                <div class="cart__items">
-                    <div class="cart__item">
-                        <img src="frontend/images/product-example.jpg" alt="Product Image" class="cart-item__image">
-                        <div class="cart__item__details">
-                            <h4 class="cart__item__name">Knitted Beanie</h4>
-                            <p class="cart__item__description">Soft merino wool beanie with ribbed texture</p>
-                            <div class="cart__item__options">
-                                <span class="cart__item__size">Size: One Size</span>
-                                <span class="cart__item__quantity">Qty: 2</span>
-                            </div>
-                            <div class="cart__item__actions">
-                                <span class="cart__item__remove">Remove</span>
-                            </div>
-                        </div>
-                        <span class="cart__item__price">$29.99</span>
-                    </div>
-                </div>
+                <div class="cart__items"></div>
                     
-                <div class="cart__summary">
-                    <div class="cart__summary__row">
-                        <span>Subtotal</span>
-                        <span>$89.98</span>
-                    </div>
-                    <div class="cart__summary__row">
-                        <span>Shipping</span>
-                        <span>$5.00</span>
-                    </div>
-                    <div class="cart__summary__total">
-                        <span>Total</span>
-                        <span>$94.98</span>
-                    </div>
-                </div>
+                <div class="cart__summary"></div>
             </div>
         </div>
 
@@ -157,6 +128,15 @@
             </div>
         </footer>
         
+        <!-- <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"></script>
+        <script type="text/javascript">
+        (function(){
+            emailjs.init("mZObdn6YZoWHiJ5-k");
+            // Make it explicitly available on window
+            window.emailjs = emailjs;
+        })();
+        </script> -->
+
         <script type="module" src="./backend/scripts/cart.js"></script>
         
         </body>

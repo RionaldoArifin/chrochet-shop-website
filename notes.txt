@@ -1,7 +1,7 @@
 Todo List:
-- make cart page interactive, checkout button interactive (save and send to email)
+- make place order button in cart page send to email
 - make the signup course button interactive (save and send to email)
-- make google account page interactive
+- make google account page interactive and link with google
 - add web animation, make the homepage scroll smoothly at a constant pace, and make the tranformed text active when scrolled, also make the view products jump one by one when in view from left to right
 - fix the sizing adjustment on different screen sizes and css style from 80% view to 100%
 - add more products

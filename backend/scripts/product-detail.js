@@ -1,4 +1,4 @@
-import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount, shortenText } from "./utils/knit.js";
 import { products } from './data/products.js';
 
 RenderNavigationBar();
@@ -52,21 +52,49 @@ function displayProductDetails(product) {
   }
   
   document.getElementById('productDescription').textContent = product.description;
+  
+  // Add size selection based on product size type
+  const sizeSelectionContainer = document.getElementById('sizeSelectionContainer');
+  if (sizeSelectionContainer) {
+    if (!product.size || product.size === 'none') {
+      // For products with no size options (one size)
+      sizeSelectionContainer.innerHTML = ``;
+    } else if (product.size === 'clothing') {
+      // For clothing products with multiple sizes
+      sizeSelectionContainer.innerHTML = `
+        <div class="product__sizes">
+        <h3>Size</h3>
+          <div class="size-options">
+            <button class="size-button">XS</button>
+            <button class="size-button">S</button>
+            <button class="size-button">M</button>
+            <button class="size-button">L</button>
+            <button class="size-button">XL</button>
+            <button class="size-button">XXL</button>
+          </div>
+          <a href="#" class="size-guide-link">Size Guide</a>
+        </div>
+      `;
+      // Setup size guide link after creating it
+      setupSizeGuideLink();
+    }
+  }
 }
 
 function setupProductInteractions(product) {
-  // Set up size selection
-  const sizeButtons = document.querySelectorAll('.size-button');
-  sizeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Remove active class from all buttons
-      sizeButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // Add active class only to the clicked button
-      button.classList.add('active');
-      // All buttons are now inactive except the one clicked
+  // Set up size selection only if product has sizes
+  if (product.size === 'clothing') {
+    const sizeButtons = document.querySelectorAll('.size-button');
+    sizeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        sizeButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class only to the clicked button
+        button.classList.add('active');
+      });
     });
-  });
+  }
 
   const colorInput = document.getElementById('color-input');
   
@@ -75,14 +103,23 @@ function setupProductInteractions(product) {
   addToCartBtn.addEventListener('click', () => {
     
     // Get selected size & color
-    const selectedSize = document.querySelector('.size-button.active');
-    const colorValue = colorInput ? colorInput.value.trim() : ''; //trim removes whitespace from input
-
-    // make sure a size is selected
-    if (!selectedSize) {
-      alert('Please select a size');
-      return;
+    let selectedSize;
+    
+    if (!product.size || product.size === 'none') {
+      // For one-size products
+      selectedSize = { textContent: 'One Size' };
+    } else {
+      // For products with multiple sizes
+      selectedSize = document.querySelector('.size-button.active');
+      
+      // make sure a size is selected for clothing items
+      if (!selectedSize) {
+        alert('Please select a size');
+        return;
+      }
     }
+
+    const colorValue = colorInput ? colorInput.value.trim().toUpperCase() : ''; //trim removes whitespace from input
 
     if (!colorInput || colorValue === '') {
       alert('Please enter a color request');
@@ -151,11 +188,10 @@ function saveToCart(productInfo) {
       const cartItem = {
         id: productInfo.id,
         name: product.name,
-        image: product.image,
-        price: product.sale ? product.discountedPrice : product.price,
         quantity: productInfo.quantity,
         size: productInfo.size,
         color: productInfo.color,
+        // sale: product.sale
       };
 
       cart.push(cartItem);
@@ -174,7 +210,7 @@ function displayRelatedProducts(currentProduct) {
     .filter(p => p.id !== currentProduct.id && p.category === currentProduct.category)
     .slice(0, 4);
   
-  if (relatedProducts.length < 3) {
+  if (relatedProducts.length < 4) {
     const otherProducts = products.filter(p =>
       p.id !== currentProduct.id &&
       p.category !== currentProduct.category &&
@@ -206,12 +242,8 @@ function displayRelatedProducts(currentProduct) {
       }
       
       // Ensure short description text with limited length
-      const shortDesc = product.description ? 
-        (product.description.length > 45 ? 
-          product.description.substring(0, 45) + '...' : 
-          product.description) : 
-        '';
-            
+      const shortDesc = shortenText(product.description, 45);
+
       relatedHTML += `
         <div class="related-items__collection ${product.sale ? ' sale__item' : ''}">
           <div class="related-items__image__cover">

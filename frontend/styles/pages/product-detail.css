@@ -304,7 +304,6 @@ body::before {
     color: var(--text-dark); 
     letter-spacing: 0.07em;
     gap: 1.8rem;
-    margin-top: 1.2rem;
 }
 
 .details__container {
@@ -322,8 +321,9 @@ body::before {
 }
 .product__sizes {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.3rem;
+    margin-top: 1.2rem;
     /* align-items: center; */
 }
 

@@ -1,4 +1,4 @@
-import { RenderNavigationBar, RenderSearchBar, updateCartCount, setupSearchBar } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount, shortenText } from "./utils/knit.js";
 import { products } from './data/products.js';
 
 RenderNavigationBar();
@@ -151,11 +151,7 @@ function renderProductsGrid(page) {
       let saleClass = ``; // Default class for products not on sale
       let priceHTML = `<h5 class="item-price">HKD${product.price}</h5>`; // default price with no sale
 
-      const shortDesc = product.description ? 
-          (product.description.length > 45 ? 
-            product.description.substring(0, 45) + '...' : 
-            product.description) : 
-          '';
+      const shortDesc = shortenText(product.description, 45);
 
       if (product.sale === true) {
         saleClass = `sale__item`;
