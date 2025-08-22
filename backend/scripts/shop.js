@@ -72,7 +72,28 @@ function filterByCategory(category) {
 
 // Function to apply sorting to the filteredProducts array
 function applySorting(sortType) {
-  switch(sortType) {
+  // Always start with a fresh copy of the original array
+  filteredProducts = [...products];
+
+  // Apply category filtering first
+  if (currentCategory !== 'all') {
+    filteredProducts = filteredProducts.filter(product => product.category === currentCategory);
+  }
+
+  // Apply search filtering if there's a search query
+  if (searchQuery) {
+    filteredProducts = filteredProducts.filter(product => {
+      const nameMatch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+      const descMatch = product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const keywordMatch = product.keywords
+        ? product.keywords.some(keyword => keyword.toLowerCase().includes(searchQuery.toLowerCase()))
+        : false;
+      return nameMatch || descMatch || keywordMatch;
+    });
+  }
+
+  // Apply sorting based on the selected sort type
+  switch (sortType) {
     case 'price-asc':
       filteredProducts.sort((a, b) => {
         const priceA = a.sale ? a.discountedPrice : a.price;
@@ -80,6 +101,7 @@ function applySorting(sortType) {
         return priceA - priceB;
       });
       break;
+
     case 'price-desc':
       filteredProducts.sort((a, b) => {
         const priceA = a.sale ? a.discountedPrice : a.price;
@@ -87,21 +109,21 @@ function applySorting(sortType) {
         return priceB - priceA;
       });
       break;
+
     case 'latest':
-      // Sort by ID assuming newer products have higher IDs
-      filteredProducts.sort((a, b) => b.id - a.id);
+      filteredProducts.reverse(); // Reverse the array to show the latest products
       break;
+
     case 'best-selling':
-      // For demo purposes, we'll just randomize the order
-      // In a real app, you'd sort by a popularity or sales metric
-      filteredProducts.sort(() => Math.random() - 0.5);
+      filteredProducts.sort((a, b) => (b.bestSelling || 0) - (a.bestSelling || 0));
       break;
+
     default:
       // Default sorting (no change)
       break;
   }
-  
-  // Update the select element to reflect current sort
+
+  // Update the select element to reflect the current sort type
   const sortSelect = document.querySelector('.sort-item-selection');
   if (sortSelect) {
     sortSelect.value = sortType;
