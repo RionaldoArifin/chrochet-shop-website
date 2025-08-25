@@ -156,3 +156,81 @@ export function shortenText(text, maxLength) {
   if (!text) return '';
   return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
 }
+
+// Email form submission handling
+export function setupEmailJS() {
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    const signupButton = document.getElementById('signupButton');
+    
+    if (signupButton) {
+      signupButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const phone = document.getElementById("phone");
+        const session = document.getElementById("session");
+        const preferredDate = document.getElementById("preferred-date");
+        const experience = document.getElementById("experience");
+        
+        // Check required fields
+        if (!name.value || !email.value || !phone.value || !session.value || !preferredDate.value || !experience.value) {
+          alert("Please fill in all required fields marked with *");
+          return;
+        }
+        
+        // Validate email format
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value)) {
+          alert("Please enter a valid email address");
+          return;
+        }
+        
+        sendMail();
+      });
+    }
+  });
+}
+
+// Improved sendMail function
+function sendMail() {
+  
+  // Show loading indicator or disable button
+  const button = document.getElementById('signupButton');
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Sending...";
+  }
+  
+  const params = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phonenumber: document.getElementById("phone").value,
+    sessionlength: document.getElementById("session").value,
+    datetime: document.getElementById("preferred-date").value,
+    level: document.getElementById("experience").value ,
+    comments: document.getElementById("comments").value || "No comments"
+  };
+  
+  // Send email with proper promise handling
+  emailjs.send("service_7pk9i9u", "template_nxhj0l2", params)
+    .then(function(response) {
+      console.log("SUCCESS!", response.status, response.text);
+      alert("Success! Thank you for signing up. We will contact you via email soon.");
+      
+      // Reset form after successful submission
+      document.querySelector('.signup form').reset();
+    })
+    .catch(function(error) {
+      console.log("FAILED...", error);
+      alert("There was an error sending your request. Please try again or contact us directly.");
+    })
+    .finally(function() {
+      // Re-enable button regardless of outcome
+      if (button) {
+        button.disabled = false;
+        button.textContent = "SIGN UP NOW";
+      }
+    });
+}

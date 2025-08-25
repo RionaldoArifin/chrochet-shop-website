@@ -22,6 +22,18 @@
         <!-- Instagram Logo -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- EmailJS SDK -->
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+        </script>
+        <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "mZObdn6YZoWHiJ5-k",
+            });
+        })();
+        </script>
     </head> 
 
     <body>
@@ -122,12 +134,12 @@
                             </div>
                             
                             <div class="label-input__group">
-                                <label class="signup__label" for="preferred-date">Preferred Date/Time</label>
+                                <label class="signup__label" for="preferred-date">Preferred Date/Time *</label>
                                 <input type="date" id="preferred-date" name="preferred-date">
                             </div>
                             
                             <div class="label-input__group">
-                                <label class="signup__label" for="experience">Experience Level</label>
+                                <label class="signup__label" for="experience">Experience Level *</label>
                                 <select id="experience" name="experience">
                                 <option value="">--Optional--</option>
                                 <option value="beginner">Beginner</option>
@@ -144,7 +156,7 @@
                         <textarea id="comments" name="comments"></textarea>
                     </div>
 
-                    <button class="signup-button__course" type="submit">SIGN UP NOW</button>
+                    <button class="signup-button__course" id="signupButton" type="button" onclick="sendMail()">SIGN UP NOW</button>
                 </form>
             </div>
         </div>

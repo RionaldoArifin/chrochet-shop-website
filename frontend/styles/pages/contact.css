@@ -416,7 +416,7 @@ body::before {
     resize: vertical;
 }
 
-.signup button[type="submit"] {
+.signup-button__course {
     background: var(--text-dark);
     color: white;
     border: none;
@@ -432,8 +432,8 @@ body::before {
     width: 100%;
 }
 
-.signup button[type="submit"]:hover,
-.signup button[type="submit"]:focus {
+.signup-button__course:hover,
+.signup-button__course:focus {
     background-color: #464646;
     transform: translateY(-1.6px);
 }

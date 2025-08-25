@@ -451,40 +451,62 @@ body::before {
   transform: rotate(45deg);
 }
 
+/* Consolidated dropdown content styling */
+.product-dropdown-details > div > div,
+.product-dropdown-details > div > p,
+.product-dropdown-details > div > table,
 .product-dropdown-details > div > .questions__faq {
   display: none;
-  padding: 12px 16px 3.2px 16px;
+}
+
+.product-dropdown-details > div > div {
+  padding: 12px 16px;
+  font-size: 13px;
 }
 
 .product-dropdown-details > div > p {
-  display: none;
   padding: 12px 16px;
   font-size: 13px;
 }
 
 .product-dropdown-details > div > table {
-  display: none;
   padding: 0px 16px 16px 16px;
   font-size: 13px;
 }
 
+.product-dropdown-details > div > .questions__faq {
+  padding: 12px 16px 3.2px 16px;
+}
+
+/* Show all content when active */
 .product-dropdown-details > div.active > *:not(h3) {
   display: block;
 }
 
+/* Table styling - consolidated */
 .size-table {
   width: 100%;
   border-collapse: collapse;
+  margin: 1rem 0;
 }
 
-.size-table th, .size-table td {
+.size-table th, 
+.size-table td {
   border: 1px solid #ddd;
-  padding: 3.2px 12.8px;
+  padding: 4px 8px;
   text-align: center;
+  font-size: 0.72rem;
 }
 
 .size-table th {
   background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.size-table th:first-child,
+.size-table td:first-child {
+  text-align: left;
+  font-weight: 600;
 }
 
 /* Size conversion note */
@@ -524,11 +546,12 @@ body::before {
   font-size: 0.72rem;
 }
 
+/* Material & care section */
 .materials-care p {
-    margin-bottom: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 
-/* Care list and sustainability list */
+/* List styling for various sections */
 .care-list,
 .sustainability-list,
 .final-sale-list {
@@ -546,43 +569,7 @@ body::before {
 }
 
 .final-sale-policy-paragraph {
-    margin-top: 0.6rem;
-}
-
-/* Fix dropdown content display */
-.product-dropdown-details > div > div {
-  display: none;
-  padding: 12px 16px;
-  font-size: 13px;
-}
-
-.product-dropdown-details > div.active > div {
-  display: block;
-}
-
-/* Table styling overrides */
-.size-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-}
-
-.size-table th, .size-table td {
-  border: 1px solid #ddd;
-  padding: 4px 8px;
-  text-align: center;
-  font-size: 0.72rem;
-}
-
-.size-table th {
-  background-color: #f5f5f5;
-  font-weight: 600;
-}
-
-.size-table th:first-child,
-.size-table td:first-child {
-  text-align: left;
-  font-weight: 600;
+  margin-top: 0.6rem;
 }
 
 /* FAQ styling */
@@ -614,7 +601,7 @@ body::before {
   color: var(--accent-color);
 }
 
-/* Fix for specific elements */
+/* Fix for specific elements - ensure consistent display */
 .product-dropdown-details > div > div > p {
   display: block !important;
   font-size: 0.72rem;
@@ -624,7 +611,7 @@ body::before {
   display: block !important;
 }
 
-/* Ensure the size guide displays properly */
+/* Size guide display handling */
 .size-guide div {
   display: none;
 }

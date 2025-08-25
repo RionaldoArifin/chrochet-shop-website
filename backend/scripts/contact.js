@@ -1,5 +1,6 @@
-import { RenderNavigationBar, RenderSearchBar, updateCartCount } from "./utils/knit.js";
+import { RenderNavigationBar, RenderSearchBar, updateCartCount, setupEmailJS } from "./utils/knit.js";
 
 RenderNavigationBar();
 RenderSearchBar();
 updateCartCount();
+setupEmailJS();
