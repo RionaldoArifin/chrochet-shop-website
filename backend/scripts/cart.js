@@ -1,9 +1,10 @@
 import { RenderNavigationBar, RenderSearchBar, updateCartCount, shortenText } from "./utils/knit.js";
 import { products } from './data/products.js';
 
+RenderNavigationBar();
+RenderSearchBar();  
+
 document.addEventListener('DOMContentLoaded', function() {
-  RenderNavigationBar();
-  RenderSearchBar();
   updateCartCount();
   renderCartItems();
   setupDeliveryOptions();

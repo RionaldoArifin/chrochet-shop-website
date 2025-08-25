@@ -1,3 +1,2 @@
 Todo List:
-- make google account page interactive and link with google
 - add web animation, make the homepage scroll smoothly at a constant pace, and make the tranformed text active when scrolled, also make the view products jump one by one when in view from left to right
