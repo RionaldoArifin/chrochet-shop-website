@@ -15,8 +15,8 @@
     --text-light: #6d6d6d;
     --border-light: #eaeaea;
     --border-medium: #d0d0d0;
-    --spacing-unit: 1rem;
-    --border-radius: 5px;
+    --spacing-unit: 0.8rem;
+    --border-radius: 4px;
     --shadow-light: 0 1px 3px rgba(0,0,0,0.05);
     --transition-default: all 0.3s ease;
     --helvetica-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -32,7 +32,6 @@ body {
     position: relative;
 }
 
-/* Add subtle grid lines to background */
 body::before {
     content: "";
     position: fixed;
@@ -43,7 +42,7 @@ body::before {
     background: 
         linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px);
-    background-size: 80px 80px;
+    background-size: 64px 64px;
     z-index: -1;
     pointer-events: none;
 }
@@ -52,7 +51,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 9.2rem;
+    padding: 1.6rem 7.36rem;
     border-bottom: 1px solid var(--border-light);
     background-color: var(--third-bg);
 }
@@ -62,45 +61,44 @@ body::before {
     text-decoration: none;
     cursor: pointer;
     color: var(--text-dark);
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 300;
-    padding: 1rem;
+    padding: 0.8rem;
     position: relative;
 }
 
 .nav__links__left a {
-    margin-right: 3rem;
+    margin-right: 2.4rem;
 }
 
 .nav__links__right a {
-    margin-left: 3rem;
+    margin-left: 2.4rem;
 }
 
-/* Underline animation */
 .nav__links__left a::after, 
 .nav__links__right a::after {
     content: '';
     position: absolute;
     width: 0;
     height: 1px;
-    bottom: 0.7rem;
-    left: 1rem;
+    bottom: 0.56rem;
+    left: 0.8rem;
     background-color: var(--text-dark);
     transition: width 0.2s ease-out;
 }
 
 .nav__links__left a:hover::after,
 .nav__links__right a:hover::after {
-    width: calc(100% - 2rem);
+    width: calc(100% - 1.6rem);
 }
 
 .nav__logo {
     position: center;
     text-decoration: none;
     color: var(--text-dark);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
-    padding: 1rem;
+    padding: 0.8rem;
     letter-spacing: 0.15em;
 }
 
@@ -116,13 +114,13 @@ body::before {
 
 .cart-count {
     position: absolute;
-    top: 6px;
-    right: -5px;
+    top: 4.8px;
+    right: -4px;
     background-color: black;
     color: white;
-    font-size: 0.7rem;
-    height: 18px;
-    width: 19px;
+    font-size: 0.56rem;
+    height: 14.4px;
+    width: 15.2px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -139,8 +137,8 @@ body::before {
 }
 
 .home__link {
-    padding: 1.5rem 10rem;
-    font-size: 0.9rem;
+    padding: 1.2rem 8rem;
+    font-size: 0.72rem;
     font-weight: 300;
     letter-spacing: 0.1em;
 }
@@ -148,40 +146,39 @@ body::before {
 .home__link a {
     text-decoration: none;
     color: var(--text-medium);
-    padding-right: 11px;
+    padding-right: 8.8px;
     cursor: pointer;
     position: relative;
 }
 
-/* Underline animation */
 .home__link a::after {
     content: '';
     position: absolute;
     width: 0;
     height: 1px;
-    bottom: -0.2rem;
+    bottom: -0.16rem;
     left: 0rem;
     background-color: var(--text-dark);
     transition: width 0.2s ease-out;
 }
 
 .home__link a:hover::after {
-    width: calc(100% - 0.7rem);
+    width: calc(100% - 0.56rem);
 }
 
 .contact-info {
-    max-width: 1200px;
-    margin: 2.5rem auto 2rem;
-    padding: 0 8rem;
+    max-width: 960px;
+    margin: 2rem auto 1.6rem;
+    padding: 0 6.4rem;
 }
 
 .contact-info h2 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 2.4rem;
+    font-size: 1.92rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     color: var(--text-dark);
     position: relative;
     display: inline-block;
@@ -191,27 +188,27 @@ body::before {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -2px;
+    bottom: -1.6px;
     width: 100%;
-    height: 3px;
+    height: 2.4px;
     background-color: var(--text-dark);
 }
 
 .contact-methods {
     display: flex;
-    gap: 4rem;
-    margin-bottom: 3rem;
+    gap: 3.2rem;
+    margin-bottom: 2.4rem;
 }
 
 .contact-method {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
     background-color: white;
-    padding: 2rem;
+    padding: 1.6rem;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    border-radius: 6.4px;
+    box-shadow: 0 0.8px 6.4px rgba(0,0,0,0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1;
     text-decoration: none;
@@ -220,34 +217,33 @@ body::before {
 }
 
 .contact-method:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* Optional: Add a subtle indicator that these are clickable */
 .contact-method::after {
     content: "→";
     position: absolute;
-    right: 40px;
+    right: 32px;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--text-medium);
 }
 
 .contact-method:hover::after {
     opacity: 1;
-    transform: translateX(5px);
+    transform: translateX(4px);
 }
 
 .contact-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 70px;
-    border: 2px solid var(--text-dark);
+    width: 56px;
+    height: 56px;
+    border: 1.6px solid var(--text-dark);
     border-radius: 50%;
 }
 
@@ -265,15 +261,15 @@ body::before {
 
 .contact-details h3 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.12rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .contact-details p {
-    font-size: 1.2rem;
+    font-size: 0.96rem;
     color: var(--text-medium);
     letter-spacing: 0.03em;
 }
@@ -281,29 +277,23 @@ body::before {
 .course {
     display: flex;
     justify-content: center;
-    margin: 6rem 8rem;
-    gap: 2rem;
+    margin: 4.8rem 6.4rem;
+    gap: 1.6rem;
 }
 
 .course__image img {
-    max-width: 600px;
+    max-width: 480px;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+    border-radius: 6.4px;
 }
-/* 
-.course__image img:hover {
-    transform: scale(1.01);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-} */
 
 .signup {
-    width: 900px;
-    padding: 3rem 2rem 2.5rem 2rem;
+    width: 720px;
+    padding: 2.4rem 1.6rem 2rem 1.6rem;
     background: #fff;
     border-radius: 0;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 0.8px 6.4px rgba(0,0,0,0.04);
     border: 1px solid var(--border-light);
     letter-spacing: 0.01em;
 }
@@ -311,7 +301,7 @@ body::before {
 .signup__inputs {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
 .signup__right {
@@ -324,28 +314,28 @@ body::before {
 
 .signup h2 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.36rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.04rem;
     color: var(--text-dark);
     text-align: left;
-    border-bottom: 2px solid var(--text-dark);
+    border-bottom: 1.6px solid var(--text-dark);
     line-height: 1.2;
 }
 
 .signup p {
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.7;
     color: var(--text-medium);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .signup form {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
 .label-input__group {
@@ -356,17 +346,17 @@ body::before {
 
 .signup__inputs label, 
 .signup label {
-    font-size: 1.1rem;
+    font-size: 0.88rem;
     font-weight: 500;
     letter-spacing: 0.03em;
-    margin-top: 0.8rem;
+    margin-top: 0.64rem;
     color: var(--text-dark);
     text-transform: uppercase;
 }
 
 .signup__inputs h6 {
-    margin-top: 0.5rem;
-    font-size: 0.75rem;
+    margin-top: 0.4rem;
+    font-size: 0.6rem;
     font-weight: 500;
     letter-spacing: 0.03em;
     color: var(--text-medium);
@@ -379,36 +369,36 @@ body::before {
 .signup__inputs input[type="date"] {
     width: 100%;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.8rem;
     background-color: #fafaf6;
     border: 1px solid #ddd;
     border-radius: 0;
-    padding: 0.7rem 0.9rem;
+    padding: 0.56rem 0.72rem;
     outline: none;
     transition: border-color 0.2s, background-color 0.1s;
     color: var(--text-dark);
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     box-sizing: border-box;
     resize: none;
 }
 
 .comment__group {
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
 }
 
 .signup textarea {
     width: 100%;
-    height: 6rem;
+    height: 4.8rem;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.8rem;
     background-color: #fafaf6;
     border: 1px solid #ddd;
     border-radius: 0;
-    padding: 0.7rem 0.9rem;
+    padding: 0.56rem 0.72rem;
     outline: none;
     transition: border-color 0.2s, background-color 0.1s;
     color: var(--text-dark);
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     box-sizing: border-box;
     resize: none;
 }
@@ -421,31 +411,31 @@ body::before {
 }
 
 .signup textarea {
-    min-height: 70px;
-    max-height: 200px;
+    min-height: 56px;
+    max-height: 160px;
     resize: vertical;
 }
 
 .signup button[type="submit"] {
-    margin-top: 0.8rem;
     background: var(--text-dark);
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    letter-spacing: 0.07em;
-    font-size: 1.06rem;
-    font-weight: 600;
+    font-family: var(--helvetica-font);
+    font-size: 0.848rem;
+    font-weight: 500;
     letter-spacing: 0.09em;
-    padding: 0.9rem 0;
+    padding: 0.8rem 0;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-top: 0.64rem;
+    width: 100%;
 }
 
 .signup button[type="submit"]:hover,
 .signup button[type="submit"]:focus {
     background-color: #464646;
-    transform: translateY(-2px);
+    transform: translateY(-1.6px);
 }
 
 .signup strong {
@@ -455,7 +445,7 @@ body::before {
 
 .footer {
     background-color: var(--secondary-bg);
-    padding: 4rem 8rem;
+    padding: 3.2rem 6.4rem;
     position: relative;
 }
 
@@ -465,7 +455,7 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 1.6px;
     background: linear-gradient(to right, var(--accent-color), transparent);
 }
 
@@ -478,35 +468,35 @@ body::before {
     display: flex;
     flex-direction: column;
     max-width: 40%;
-    margin-right: 10rem;
+    margin-right: 8rem;
 }
 
 .logo__name {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     letter-spacing: 0.15em;
 }
 
 .footer__logo p {
-    margin-top: 1rem;
+    margin-top: 0.8rem;
     letter-spacing: 0.05em;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.6;
 }
 
 .footer__logo h3 {
-    margin-top: 3rem;
+    margin-top: 2.4rem;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 0.96rem;
     letter-spacing: 0.07em;
     position: relative;
     display: inline-block;
 }
 
 .footer__logo a {
-    margin-top: 0.6rem;
+    margin-top: 0.48rem;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.88rem;
     color: #333333;
     transition: color 0.3s ease;
 }
@@ -522,20 +512,20 @@ body::before {
 }
 
 .footer__column h4 {
-    font-size: 1.3rem;
+    font-size: 1.04rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     position: relative;
     display: inline-block;
 }
 
 .footer__column a,
 .footer__bottom a {
-    font-size: 1.1rem;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--text-medium);
     text-decoration: none;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.72rem;
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
@@ -545,7 +535,7 @@ body::before {
 .footer__bottom a::before {
     content: "→";
     position: absolute;
-    left: -21px;
+    left: -16.8px;
     opacity: 0;
     transition: all 0.3s ease;
 }
@@ -557,7 +547,7 @@ body::before {
 
 .footer__column a:hover,
 .footer__bottom a:hover {
-    transform: translateX(21px);
+    transform: translateX(16.8px);
     color: var(--accent-color);
 }
 
@@ -568,28 +558,27 @@ body::before {
 }
 
 .footer__bottom p {
-    font-size: 1.2rem;
+    font-size: 0.96rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     color: var(--text-medium);
 }
 
-/* Responsive adjustments */
 @media (max-width: 1200px) {
     .nav {
-        padding: 2rem 5rem;
+        padding: 1.6rem 4rem;
     }
     
     .home__link {
-        padding: 1.5rem 5rem;
+        padding: 1.2rem 4rem;
     }
     
     .contact-info {
-        padding: 0 5rem;
+        padding: 0 4rem;
     }
     
     .course {
-        margin: 6rem 5rem;
+        margin: 4.8rem 4rem;
         flex-direction: column;
         align-items: center;
     }
@@ -599,38 +588,38 @@ body::before {
     }
     
     .footer {
-        padding: 4rem 5rem;
+        padding: 3.2rem 4rem;
     }
 }
 
 @media (max-width: 768px) {
     .nav {
-        padding: 2rem 2rem;
+        padding: 1.6rem;
     }
     
     .nav__links__left a {
-        margin-right: 1rem;
+        margin-right: 0.8rem;
     }
     
     .nav__links__right a {
-        margin-left: 1rem;
+        margin-left: 0.8rem;
     }
     
     .home__link {
-        padding: 1.5rem 2rem;
+        padding: 1.2rem 1.6rem;
     }
     
     .contact-info {
-        padding: 0 2rem;
+        padding: 0 1.6rem;
     }
     
     .contact-methods {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.6rem;
     }
     
     .course {
-        margin: 4rem 2rem;
+        margin: 3.2rem 1.6rem;
     }
     
     .course__image img {
@@ -642,39 +631,38 @@ body::before {
     }
     
     .footer {
-        padding: 4rem 2rem;
+        padding: 3.2rem 1.6rem;
     }
 }
 
-/* ===== SEARCH STYLES ===== */
 .search-container {
   display: none;
   position: absolute;
-  top: calc(var(--nav-height, 5rem));
+  top: calc(var(--nav-height, 4rem));
   left: 0;
   width: 100%;
   background-color: var(--third-bg);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1.6px 4.8px rgba(0, 0, 0, 0.05);
   z-index: 2000;
   animation: slideDown 0.3s ease-out;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
   border-bottom: 1px solid var(--border-light);
 }
 
 .search-form {
   display: flex;
   align-items: center;
-  max-width: 1400px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.6rem;
 }
 
 .search-input {
   flex: 1;
-  height: 2rem;
-  padding: 1.4rem 1rem;
+  height: 1.6rem;
+  padding: 1.12rem 0.8rem;
   font-family: "Radley", serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: var(--text-medium);
   border: 1px solid var(--border-light);
   background-color: white;
@@ -685,14 +673,14 @@ body::before {
 
 .search-input:focus {
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(101, 101, 101, 0.1);
+  box-shadow: 0 0 0 1.6px rgba(101, 101, 101, 0.1);
 }
 
 .search-close {
   background: none;
   border: none;
-  font-size: 1.2rem;
-  margin: 0 1rem;
+  font-size: 0.96rem;
+  margin: 0 0.8rem;
   cursor: pointer;
   color: var(--text-medium);
   transition: color 0.3s ease;
@@ -704,7 +692,7 @@ body::before {
 
 @keyframes slideDown {
   from {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     opacity: 0;
   }
   to {
@@ -715,12 +703,12 @@ body::before {
 
 @media (max-width: 1200px) {
   .search-form {
-    margin: 0 5rem;
+    margin: 0 4rem;
   }
 }
 
 @media (max-width: 768px) {
   .search-form {
-    margin: 0 2rem;
+    margin: 0 1.6rem;
   }
 }

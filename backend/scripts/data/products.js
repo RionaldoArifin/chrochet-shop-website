@@ -20,6 +20,7 @@ class Product{
     category;
     bestSelling;
     size;
+    keywords;
 
     constructor(productDetails) {
         this.id = productDetails.id;
@@ -33,6 +34,7 @@ class Product{
         this.category = productDetails.category;
         this.bestSelling = productDetails.bestSelling;
         this.size = productDetails.size;
+        this.keywords = productDetails.keywords || [];
     }
 
     getPrice() {
@@ -70,7 +72,7 @@ export const products = [
     discountedPrice: 199,
     keywords: [
       "sweaters",
-      "clotches",
+      "clothes",
     ],
     size: "clothing",
     sizeChartLink: "frontend/images/clothing-size-chart (1).png",
@@ -84,7 +86,7 @@ export const products = [
     sale: false,
     keywords: [
       "sweaters",
-      "clotches",
+      "clothes",
     ],
     type: "clothing",
     size: "clothing",
@@ -131,7 +133,8 @@ export const products = [
     price: 99,
     keywords: [
       "flowers",
-      "accessories"
+      "accessories",
+      "gifts"
     ],
     category: "accessories"
   },
@@ -164,8 +167,8 @@ export const products = [
     description: "Lightweight cardigan perfect for summer",
     price: 149,
     keywords: [
-      "home",
-      "decoration"
+      "cardigan",
+      "top"
     ],
     type: "clothing",
     size: "clothing",
