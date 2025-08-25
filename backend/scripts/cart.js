@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
   setupDeliveryOptions();
 });
 
+const orderButton = document.querySelector('.make-order-button');
+  if (orderButton) {
+    orderButton.addEventListener('click', placeOrder);
+  }
+
 function renderCartItems() {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   const cartItemsContainer = document.querySelector('.cart__items');
@@ -122,57 +127,57 @@ function removeFromCart(productId) {
 }
 
 function setupDeliveryOptions() {
-  const deliveryOption = document.getElementById('deliveryMethodContainer1');
-  const pickupOption = document.getElementById('deliveryMethodContainer2');
-  const deliveryDetails = document.querySelector('.delivery__details');
-  const pickupDetails = document.querySelector('.pickup__details');
-  
-  // Initially hide pickup details
-  if (pickupDetails) pickupDetails.style.display = 'none';
-  
-  // Setup delivery method change event
-  document.querySelectorAll('.delivery__radio').forEach(radio => {
-    radio.addEventListener('change', function() {
-      if (this.id === 'delivery1') {
-        deliveryOption.classList.add('selected');
-        pickupOption.classList.remove('selected');
-        if (deliveryDetails) deliveryDetails.style.display = 'block';
-        if (pickupDetails) pickupDetails.style.display = 'none';
+    const deliveryRadios = document.querySelectorAll('.delivery__radio');
+    const deliveryDetails = document.getElementById('delivery-details');
+    const pickupDetails = document.getElementById('pickup-details');
+    
+    // Function to handle delivery option changes
+    function handleDeliveryOptionChange() {
+        const isDelivery = document.getElementById('delivery1').checked;
         
-        // Update shipping cost
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const subtotal = calculateSubtotal(cart);
-        updatePriceSummary(subtotal, 20);
-      } else {
-        deliveryOption.classList.remove('selected');
-        pickupOption.classList.add('selected');
-        if (deliveryDetails) deliveryDetails.style.display = 'none';
-        if (pickupDetails) pickupDetails.style.display = 'block';
-        
-        // Update shipping cost (free for pickup)
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const subtotal = calculateSubtotal(cart);
-        updatePriceSummary(subtotal, 0);
-      }
+        if (isDelivery) {
+            deliveryDetails.style.display = 'flex';
+            pickupDetails.style.display = 'none';
+            
+            // Add selected class for styling
+            document.querySelector('.delivery').classList.add('selected');
+            document.querySelector('.pickup').classList.remove('selected');
+        } else {
+            deliveryDetails.style.display = 'none';
+            pickupDetails.style.display = 'block';
+            
+            // Add selected class for styling
+            document.querySelector('.pickup').classList.add('selected');
+            document.querySelector('.delivery').classList.remove('selected');
+        }
+    }
+    
+    // Add event listeners to radio buttons
+    deliveryRadios.forEach(radio => {
+        radio.addEventListener('change', handleDeliveryOptionChange);
     });
-  });
-  
-  // Setup order button
-  const orderButton = document.querySelector('.make-order-button');
-  if (orderButton) {
-    orderButton.addEventListener('click', placeOrder);
-  }
+    
+    handleDeliveryOptionChange();
 }
 
 function placeOrder() {
   // Validate user inputs
-  const firstName = document.querySelector('.firstname-input').value;
-  const lastName = document.querySelector('.lastname-input').value;
-  const email = document.querySelector('.email-input').value;
-  const phone = document.querySelector('.phonenumber-input').value;
+  const firstName = document.getElementById('firstname-input').value;
+  const lastName = document.getElementById('lastname-input').value;
+  const email = document.getElementById('email-input').value;
+  const phone = document.getElementById('phonenumber-input').value;
+  
+  // Basic email validation
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
   
   if (!firstName || !lastName || !email || !phone) {
     alert('Please fill in all contact information fields');
+    return;
+  } else if (!isValidEmail(email)) {
+    alert('Please enter a valid email address');
     return;
   }
   
@@ -185,33 +190,27 @@ function placeOrder() {
   
   // Check delivery method and validate address if needed
   const isDelivery = document.getElementById('delivery1').checked;
-  let addressDetails = {};
+  let deliveryAddress = '';
+  let deliveryTitle = '';
   
+  // If delivery is selected, validate address fields
   if (isDelivery) {
-    const address = document.querySelector('.address-input').value;
-    const city = document.querySelector('.city-input').value;
-    const postal = document.querySelector('.postal-input').value;
-    const country = document.querySelector('.country-input').value;
+    const address = document.getElementById('address-input').value;
+    const city = document.getElementById('city-input').value;
+    const postal = document.getElementById('postal-input').value;
+    const country = document.getElementById('country-input').value;
     
     if (!address || !city || !postal || !country) {
       alert('Please fill in all delivery address fields');
       return;
     }
     
-    addressDetails = { address, city, postal, country };
+    deliveryTitle = 'Delivery Address';
+    deliveryAddress = `${address}, ${city}, ${postal}, ${country}`;
+  } else {
+    deliveryTitle = 'Pickup Information';
+    deliveryAddress = 'Please contact us in advance to confirm your pickup time and bring your order confirmation along with valid ID when collecting your order.';
   }
-  
-  // Format cart items for email
-  const cartItems = cart.map(item => {
-    const product = products.find(p => p.id === item.id) || {};
-    return {
-      name: product.name,
-      price: (product.sale ? product.discountedPrice : product.price),
-      quantity: item.quantity,
-      size: item.size || 'One Size',
-      color: item.color || ''
-    };
-  });
   
   // Calculate totals
   const subtotal = calculateSubtotal(cart);
@@ -228,27 +227,70 @@ function placeOrder() {
     day: 'numeric'
   });
   
-  // Prepare data for email service
+  // Generate HTML for all products in cart for email
+  let productsHTML = '';
+  
+  for (const item of cart) {
+    const product = products.find(p => p.id === item.id);
+    
+    // Skip if product not found
+    if (!product) {
+      console.error('Product not found:', item.id);
+      continue;
+    }
+    
+    const productPrice = product.sale ? (product.discountedPrice || product.price) : product.price;
+    
+    // Build HTML for this product
+    productsHTML += `
+      <div style="padding: 10px 0; border-bottom: 1px solid #eee;">
+        <div style="font-weight: bold;">${product.name}</div>
+        <div style="font-size: 13px; color: #666; padding-top: 4px;">
+          Size: ${item.size || 'One Size'} | Qty: ${item.quantity} | Color: ${item.color || 'N/A'}
+        </div>
+        <div style="text-align: right;"><strong>HKD${productPrice}</strong></div>
+      </div>
+    `;
+  }
+  
+  // In case no products were found
+  if (productsHTML === '') {
+    productsHTML = '<div style="padding: 10px 0;">No product details available</div>';
+  }
+  
+  // Prepare EmailJS data
   const orderData = {
-    site_url: window.location.origin,
+    // Customer info
+    customerName: `${firstName} ${lastName}`,
+    customerEmail: email,
+    customerPhone: phone,
+    
+    // Order info
+    deliveryMethod: isDelivery ? 'Delivery' : 'Pickup',
     orderNumber: orderNumber,
     orderDate: orderDate,
-    customerInfo: {
-      name: `${firstName} ${lastName}`,
-      email: email,
-      phone: phone
-    },
-    deliveryMethod: isDelivery ? 'Delivery' : 'Pickup',
-    isDelivery: isDelivery,
-    addressDetails: addressDetails,
-    orderItems: cartItems,
-    orderSummary: {
-      subtotal: subtotal.toFixed(2),
-      shipping: shipping.toFixed(2),
-      total: total.toFixed(2)
-    }
+    
+    // All products/cart items HTML
+    productsHTML: productsHTML,
+    
+    // Delivery information
+    deliveryTitle: deliveryTitle,
+    deliveryAddress: deliveryAddress,
+    
+    // Order summary
+    subtotal: subtotal.toFixed(2),
+    shipping: shipping.toFixed(2),
+    total: total.toFixed(2),
+    
+    // Email routing
+    to_name: "KNIT Store",
+    to_email: "rionaloarifin610@gmail.com",
+    reply_to: email,
   };
-
+  
+  // Log data being sent (for debugging)
+  console.log('Sending order data:', orderData);
+  
   // Show loading indicator
   const orderButton = document.querySelector('.make-order-button');
   const originalButtonText = orderButton.textContent;
@@ -256,9 +298,14 @@ function placeOrder() {
   orderButton.disabled = true;
   
   // Send to email service (using EmailJS)
-  window.emailjs.send("service_7pk9i9u","template_frt3ahe", orderData)
+  emailjs.send("service_7pk9i9u", "template_frt3ahe", orderData)
   .then(function(response) {
-    console.log('Email sent successfully', response);
+    console.log('Email sent successfully:', response);
+    
+    // Store order number for reference
+    localStorage.setItem('lastOrderNumber', orderNumber);
+    
+    // Show success message
     alert('Thank you for your order! We will contact you shortly with confirmation details.');
     
     // Clear cart after successful order
@@ -272,7 +319,19 @@ function placeOrder() {
   })
   .catch(function(error) {
     console.error('Email sending failed:', error);
-    alert('There was an issue processing your order. Please try again or contact us directly.');
+    
+    let errorMessage = 'There was an issue processing your order. Please try again or contact us directly.';
+    
+    // More specific error messages based on error type
+    if (error.status === 400) {
+      errorMessage = 'Invalid order information. Please check your details and try again.';
+    } else if (error.status === 422) {
+      errorMessage = 'Email address validation failed. Please check your email address.';
+    } else if (error.status === 0 || error.status >= 500) {
+      errorMessage = 'Network issue or service unavailable. Please try again later.';
+    }
+    
+    alert(errorMessage);
     
     // Reset button
     orderButton.textContent = originalButtonText;
