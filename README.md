@@ -29,24 +29,24 @@
 ## Project Structure
 knit-ecommerce/
 ├── frontend/
-│   ├── images/
-│   ├── styles/
-│   │   ├── pages/
-│   │   └── components/
-│   └── fonts/
+│ ├── images/
+│ ├── styles/
+│ │ ├── pages/
+│ │ └── components/
+│ └── fonts/
 ├── backend/
-│   ├── scripts/
-│   │   ├── utils/
-│   │   └── data/
-│   └── api/
+│ ├── scripts/
+│ │ ├── utils/
+│ │ └── data/
+│ └── api/
 └── pages/
-    ├── index.html
-    ├── shop.html
-    ├── product-detail.html
-    ├── cart.html
-    ├── checkout.html
-    ├── courses.html
-    └── about.html
+├── index.html
+├── shop.html
+├── product-detail.html
+├── cart.html
+├── checkout.html
+├── courses.html
+└── about.html
 
 ---
 
