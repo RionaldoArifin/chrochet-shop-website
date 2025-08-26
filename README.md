@@ -26,30 +26,6 @@
 
 ---
 
-## Project Structure
-knit-ecommerce/
-├── frontend/
-│ ├── images/
-│ ├── styles/
-│ │ ├── pages/
-│ │ └── components/
-│ └── fonts/
-├── backend/
-│ ├── scripts/
-│ │ ├── utils/
-│ │ └── data/
-│ └── api/
-└── pages/
-├── index.html
-├── shop.html
-├── product-detail.html
-├── cart.html
-├── checkout.html
-├── courses.html
-└── about.html
-
----
-
 ## Design Principles
 - **Minimalist Aesthetic:** Clean, uncluttered interface highlighting product photography.
 - **Intuitive Navigation:** Logical flow through the shopping experience.
