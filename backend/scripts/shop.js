@@ -188,7 +188,7 @@ function renderProductsGrid(page) {
       }
 
       productsHTML += `
-        <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
+        <a class="products__collection ${saleClass}" href="product-detail.html?id=${product.id}">
             <div class="products__image__cover">
                 <img class="products__image" alt="Products images" src="${product.image}">
             </div>
