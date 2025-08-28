@@ -247,7 +247,7 @@ function displayRelatedProducts(currentProduct) {
       relatedHTML += `
         <div class="related-items__collection ${product.sale ? ' sale__item' : ''}">
           <div class="related-items__image__cover">
-            <a class="products__collection ${saleClass}" href="/product-detail.html?id=${product.id}">
+            <a class="products__collection ${saleClass}" href="product-detail.html?id=${product.id}">
               <img class="related-items__image" alt="${product.name}" src="${product.image}">
             </a>
           </div>
