@@ -3,7 +3,7 @@
 ## Project Overview
 **KNIT** is a fully functional e-commerce platform showcasing handmade knitting and crochet products from Lampung, Indonesia. This Summer 2025 project features a complete shopping experience with course registration capabilities and automated email confirmations.
 
-**Live site:** [knitshop.com](https://knitshop.com)
+**Live site:** https://rionaldoarifin.github.io/chrochet-shop-website/
 
 ---
 
